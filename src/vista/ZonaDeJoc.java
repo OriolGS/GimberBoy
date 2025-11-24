@@ -1,0 +1,103 @@
+
+package vista;
+
+import controlador.ControladorDeJoc;
+import controlador.GestorDeDibuix;
+import java.awt.Graphics;
+import java.awt.MediaTracker;
+import java.awt.image.BufferedImage;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
+import model.ListModelDeJoc;
+
+
+public class ZonaDeJoc extends JPanel  {   // TODO: Implementar Observer
+
+	private static final long serialVersionUID = -3271023844287269386L;
+
+	
+	
+	// Dimensió de la zona de joc, són constants de moment, per poder compartir-les
+	public static final int ANCHO = 550;
+	public static final int ALTO = 350;
+	
+	private final BufferedImage doblebufer; // final en properes iteracions
+	private ControladorDeJoc controlador;// controlador del game
+
+	// constructor: Generem un bufer per gestionar els elements gràfics
+	public ZonaDeJoc() {
+		
+		// El nostre Doble Búfer
+		doblebufer = new BufferedImage(ANCHO, ALTO, BufferedImage.TYPE_INT_RGB);
+		// iniciarem el GestorDeDibuix
+		iniciMotorGrafic();
+        
+		// el controlador dels esdeveniments en zona de joc, es el motor del game.
+		controlador = new ControladorDeJoc(this);
+
+		//TODO 6: Afegim JPanel Zona de joc com observadora (Observer); la clase está 
+		//interesada en recibir notificaciones o actualizaciones de un objeto observable. Al detectar cambios llamar a repaint();
+		
+
+		//Dimensionem el JPanel Zona de Joc
+		setBounds(0, 0, ZonaDeJoc.ANCHO, ZonaDeJoc.ALTO);
+		setVisible(true);
+
+	}
+
+	public void jugar() {
+		controlador.jugar();
+	}
+
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		ListModelDeJoc.getInstancia().pintarJoc();
+		g.drawImage(doblebufer, 0, 0, this);
+	}
+
+	
+
+	
+	public void finalizar() {
+		// Deixa de mirar patró observer
+	
+		setVisible(false);
+	}
+
+	// inicialitzem el motorGraphic GestorDedibuix i carreguem les imatges del game en el motor
+	public void iniciMotorGrafic() {
+		// Utilitzem el Patró singlenton per tal inicialitzar el motor graphic
+		GestorDeDibuix.getInstancia().inicializar(new MediaTracker(this), doblebufer.getGraphics(), this);
+		String cacheImatges[][] = { { "BOLA", "Bola.gif" }, { "ROBOT", "Robot.gif" }, { "FONS", "bg.png" } }; // TODO: Afeguir Sprites
+
+		try {
+			// Carreguem imatge a imatge al gestor De Dibuix
+			for (int i = 0; i < cacheImatges.length; i++) {
+				GestorDeDibuix.getInstancia().afegirImatge(cacheImatges[i][0], loadImage(cacheImatges[i][1]));
+			}
+
+		} catch (InterruptedException e) {
+
+		}
+	}
+
+	// Càrrega d'una imatge del disc o desde una URL en el bufferedImages
+	public BufferedImage loadImage(String nombre) {
+		URL url = null;
+		try {
+			url = getClass().getClassLoader().getResource(nombre);
+			System.out.println(url);
+			// la classe ImageIO carrega l'imatge en un BufferedImatge
+			return ImageIO.read(url);
+
+		} catch (Exception e) {
+			System.out.println("No s'ha pogut carregar la imatge " + nombre + " de " + url);
+			System.out.println("L'ha sigut: " + e.getClass().getName() + " " + e.getMessage());
+			System.exit(0);
+			return null;
+		}
+	}
+}
+
