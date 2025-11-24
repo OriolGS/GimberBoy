@@ -18,7 +18,7 @@ import vista.ZonaDeJoc;
  * @version 2025
  */
 
-public class ControladorDeJoc {
+public class ControladorDeJoc implements MouseListener, MouseMotionListener {
 	
 	// Per mirar que tots els torns triguin el mateix
 	private long usedTime; 
@@ -36,7 +36,7 @@ public class ControladorDeJoc {
 		ListModelDeJoc.getInstancia().iniciarJoc();
 	   
 		// game loop for DoomsDay
-		while (1 == 1) {
+		while (true) {
            
 			// tip jugable: introduim un retard per tal aturar-lo uns 20 milisegons
 			if (usedTime < 20) retardo();

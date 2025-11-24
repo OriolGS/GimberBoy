@@ -7,15 +7,18 @@ import java.awt.Graphics;
 import java.awt.MediaTracker;
 import java.awt.image.BufferedImage;
 import java.net.URL;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import model.ListModelDeJoc;
 
 
-public class ZonaDeJoc extends JPanel  {   // TODO: Implementar Observer
+public class ZonaDeJoc extends JPanel implements Observer{
+	
 
 	private static final long serialVersionUID = -3271023844287269386L;
-
 	
 	
 	// Dimensió de la zona de joc, són constants de moment, per poder compartir-les
@@ -35,9 +38,9 @@ public class ZonaDeJoc extends JPanel  {   // TODO: Implementar Observer
         
 		// el controlador dels esdeveniments en zona de joc, es el motor del game.
 		controlador = new ControladorDeJoc(this);
-
-		//TODO 6: Afegim JPanel Zona de joc com observadora (Observer); la clase está 
-		//interesada en recibir notificaciones o actualizaciones de un objeto observable. Al detectar cambios llamar a repaint();
+		
+		ListModelDeJoc.getInstancia().addObserver(this);
+		
 		
 
 		//Dimensionem el JPanel Zona de Joc
@@ -98,6 +101,21 @@ public class ZonaDeJoc extends JPanel  {   // TODO: Implementar Observer
 			System.exit(0);
 			return null;
 		}
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		//interesada en recibir notificaciones o actualizaciones de un objeto observable. Al detectar cambios llamar a repaint();
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'update'");
+	}
+
+	public void addMouseListener(ControladorDeJoc controlador){
+
+	}
+
+	public void addMouseMotionListener(ControladorDeJoc controlador){
+
 	}
 }
 

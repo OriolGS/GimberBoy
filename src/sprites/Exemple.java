@@ -32,6 +32,12 @@ public class Exemple extends Sprite {
 		GestorDeDibuix.getInstancia().pintar("BOLA", getX(), getY(), 30);
 	}
 
+	@Override
+	public int getVidas() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'getVidas'");
+	}
+
 	
 }
 

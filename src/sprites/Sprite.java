@@ -34,4 +34,6 @@ public abstract class Sprite {
 	public abstract void pintar();
 
 	public abstract void animar();
+	
+	public abstract int getVidas();
 }

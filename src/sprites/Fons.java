@@ -15,6 +15,10 @@ import vista.ZonaDeJoc;
  */
 public class Fons extends Sprite {
 
+    public Fons() {
+        this(0, 0);
+    }
+    
     public Fons(int x, int y) {
         super(x, y);
       
@@ -30,6 +34,12 @@ public class Fons extends Sprite {
 
     @Override
     public void animar() {
+    }
+
+    @Override
+    public int getVidas() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getVidas'");
     }
 
   
