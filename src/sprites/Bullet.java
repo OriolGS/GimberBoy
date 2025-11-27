@@ -1,11 +1,8 @@
-package model;
-
-import sprites.Sprite;
+package sprites;
 
 public class Bullet extends Sprite {
     public Bullet(int x, int y) {
         super(x, y);
-        //TODO Auto-generated constructor stub
     }
 
     int x, y;
@@ -28,6 +25,7 @@ public class Bullet extends Sprite {
 
     @Override
     public void pintar() {
+        
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'pintar'");
     }

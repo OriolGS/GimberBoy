@@ -14,7 +14,6 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import model.ListModelDeJoc;
 
-
 public class ZonaDeJoc extends JPanel implements Observer{
 	
 
@@ -22,8 +21,8 @@ public class ZonaDeJoc extends JPanel implements Observer{
 	
 	
 	// Dimensió de la zona de joc, són constants de moment, per poder compartir-les
-	public static final int ANCHO = 550;
-	public static final int ALTO = 350;
+	public static final int ANCHO = 1000;
+	public static final int ALTO = 750;
 	
 	private final BufferedImage doblebufer; // final en properes iteracions
 	private ControladorDeJoc controlador;// controlador del game
@@ -57,15 +56,14 @@ public class ZonaDeJoc extends JPanel implements Observer{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		ListModelDeJoc.getInstancia().pintarJoc();
+		// Draw HUD/text on top of the sprites so it is not overwritten by the background
 		g.drawImage(doblebufer, 0, 0, this);
 	}
 
 	
-
-	
 	public void finalizar() {
 		// Deixa de mirar patró observer
-	
+		ListModelDeJoc.getInstancia().deleteObserver(this);
 		setVisible(false);
 	}
 
@@ -73,16 +71,17 @@ public class ZonaDeJoc extends JPanel implements Observer{
 	public void iniciMotorGrafic() {
 		// Utilitzem el Patró singlenton per tal inicialitzar el motor graphic
 		GestorDeDibuix.getInstancia().inicializar(new MediaTracker(this), doblebufer.getGraphics(), this);
-		String cacheImatges[][] = { { "BOLA", "Bola.gif" }, { "ROBOT", "Robot.gif" }, { "FONS", "bg.png" } }; // TODO: Afeguir Sprites
-
+		String cacheImatges[][] = { { "BOLA", "Bola.gif" }, { "ROBOT", "Robot.gif" }, { "FONS", "bg.png" } }; 
+		// TODO: Afegir Sprites
+	
 		try {
 			// Carreguem imatge a imatge al gestor De Dibuix
 			for (int i = 0; i < cacheImatges.length; i++) {
 				GestorDeDibuix.getInstancia().afegirImatge(cacheImatges[i][0], loadImage(cacheImatges[i][1]));
 			}
-
+			
 		} catch (InterruptedException e) {
-
+			e.printStackTrace();
 		}
 	}
 
@@ -107,15 +106,15 @@ public class ZonaDeJoc extends JPanel implements Observer{
 	public void update(Observable o, Object arg) {
 		//interesada en recibir notificaciones o actualizaciones de un objeto observable. Al detectar cambios llamar a repaint();
 		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'update'");
+		
 	}
 
 	public void addMouseListener(ControladorDeJoc controlador){
-
+		// super.addMouseListener(controlador);
 	}
 
 	public void addMouseMotionListener(ControladorDeJoc controlador){
-
+		// super.addMouseMotionListener(controlador);
 	}
 }
 

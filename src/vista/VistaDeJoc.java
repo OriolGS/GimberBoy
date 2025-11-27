@@ -17,7 +17,6 @@ import javax.swing.UIManager;
 
 public class VistaDeJoc extends JFrame {
 
-	// netbeans warning
 	private static final long serialVersionUID = 8164970557352288581L;
 	private ZonaDeJoc PanelZonaJoc;
 
@@ -44,7 +43,7 @@ public class VistaDeJoc extends JFrame {
 	// Inicialización de components de Jborland 
 	private void composite() throws Exception {
 		this.setSize(new Dimension(ZonaDeJoc.ANCHO, ZonaDeJoc.ALTO + 20));
-		this.setTitle("JocExemple");  
+		this.setTitle("Max&Oriol");  
 		this.setLayout( new BorderLayout(5,5));
 		// instanciem el JPANEL zona de joc
 		PanelZonaJoc = new ZonaDeJoc();
@@ -72,7 +71,7 @@ public class VistaDeJoc extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Comienza la ejecución");
+		System.out.println("Comienza la ejecución!");
 		// invoquem al nostre constructor
 		new VistaDeJoc();
 	}

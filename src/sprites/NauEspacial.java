@@ -1,10 +1,8 @@
-package model;
+package sprites;
 
-import sprites.Sprite;
+public class NauEspacial extends Sprite {
 
-public class Marcador extends Sprite {
-
-    public Marcador(int x, int y) {
+    public NauEspacial(int x, int y) {
         super(x, y);
         //TODO Auto-generated constructor stub
     }

@@ -34,6 +34,7 @@ public class Fons extends Sprite {
 
     @Override
     public void animar() {
+        System.out.println("  ");
     }
 
     @Override

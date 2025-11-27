@@ -40,6 +40,7 @@ public class ListModelDeJoc extends Observable {
 	public void iniciarJoc() {
 		// TODO
 		vEntes.add(0, new Fons());
+		vEntes.add(1, new GimberBoy());
 
 	}
 
