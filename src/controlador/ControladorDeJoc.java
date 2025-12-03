@@ -86,6 +86,9 @@ public class ControladorDeJoc implements MouseListener, MouseMotionListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		ListModelDeJoc gm = ListModelDeJoc.getInstancia();
+		gm.hemPitjatElMouse();
+		gm.notifyObservers();
 		
 	}
 

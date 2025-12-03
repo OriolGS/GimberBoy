@@ -22,10 +22,7 @@ public class GimberBoy extends Sprite {
     }
 
     @Override
-    public void animar() {
-        // TODO: generate code to update position with mouse
-        // setY(getY() -1);
-    }
+    public void animar() {}
 
     @Override
     public int getVidas() {
