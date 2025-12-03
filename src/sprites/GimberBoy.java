@@ -1,46 +1,30 @@
 package sprites;
 
 import controlador.GestorDeDibuix;
+import vista.ZonaDeJoc;
 
 public class GimberBoy extends Sprite {
-    int x, y;
+    private static final int WIDTH = 35;
+    private static final int HEIGHT = 50;
 
     public GimberBoy() {
-        super(500, 625);
+        super((ZonaDeJoc.ANCHO/2)-(WIDTH/2), (ZonaDeJoc.ALTO/3*3)-(HEIGHT*2), WIDTH, HEIGHT);
     }
 
     public GimberBoy(int x, int y) {
-        super(x, y);
+        super(x, y, WIDTH, HEIGHT);
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        System.err.println("Setting X to: " + x);
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        System.err.println("Setting Y to: " + y);
-        this.y = y;
-    }
 
     @Override
     public void pintar() {
-        GestorDeDibuix.getInstancia().pintar("ROBOT", getX(), getY(), 50);
+        GestorDeDibuix.getInstancia().pintar("ROBOT", getX(), getY(), getWidth(), getHeight());
     }
 
     @Override
     public void animar() {
-        System.out.println("ANIMANT!");
-        // TODO Auto-generated method stub
-        // throw new UnsupportedOperationException("Unimplemented method 'animar'");
+        // TODO: generate code to update position with mouse
+        setY(getY() -1);
     }
 
     @Override

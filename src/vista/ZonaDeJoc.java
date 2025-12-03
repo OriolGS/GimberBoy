@@ -59,11 +59,11 @@ public class ZonaDeJoc extends JPanel implements Observer{
 		// Draw HUD/text on top of the sprites so it is not overwritten by the background
 		g.drawImage(doblebufer, 0, 0, this);
 	}
-
+	
 	
 	public void finalizar() {
 		// Deixa de mirar patró observer
-		ListModelDeJoc.getInstancia().deleteObserver(this);
+	
 		setVisible(false);
 	}
 
@@ -71,15 +71,14 @@ public class ZonaDeJoc extends JPanel implements Observer{
 	public void iniciMotorGrafic() {
 		// Utilitzem el Patró singlenton per tal inicialitzar el motor graphic
 		GestorDeDibuix.getInstancia().inicializar(new MediaTracker(this), doblebufer.getGraphics(), this);
-		String cacheImatges[][] = { { "BOLA", "Bola.gif" }, { "ROBOT", "Robot.gif" }, { "FONS", "bg.png" } }; 
-		// TODO: Afegir Sprites
-	
+		String cacheImatges[][] = { { "BOLA", "Bola.gif" }, { "ROBOT", "Robot.gif" }, { "FONS", "bg.png" } }; // TODO: Afeguir Sprites
+
 		try {
 			// Carreguem imatge a imatge al gestor De Dibuix
 			for (int i = 0; i < cacheImatges.length; i++) {
 				GestorDeDibuix.getInstancia().afegirImatge(cacheImatges[i][0], loadImage(cacheImatges[i][1]));
 			}
-			
+
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -104,9 +103,10 @@ public class ZonaDeJoc extends JPanel implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		//interesada en recibir notificaciones o actualizaciones de un objeto observable. Al detectar cambios llamar a repaint();
+		// interesada en recibir notificaciones o actualizaciones de un objeto observable. Al detectar cambios llamar a repaint();
 		// TODO Auto-generated method stub
-		
+		repaint();
+		// throw new UnsupportedOperationException("Unimplemented method 'update'");
 	}
 
 	public void addMouseListener(ControladorDeJoc controlador){
@@ -117,4 +117,3 @@ public class ZonaDeJoc extends JPanel implements Observer{
 		// super.addMouseMotionListener(controlador);
 	}
 }
-

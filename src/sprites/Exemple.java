@@ -17,7 +17,7 @@ import vista.ZonaDeJoc;
 public class Exemple extends Sprite {
 
 	public Exemple() {
-		super(0,70);
+		super(0,70, 10, 10);
 	}
 	
 	public void animar() {
@@ -40,4 +40,3 @@ public class Exemple extends Sprite {
 
 	
 }
-

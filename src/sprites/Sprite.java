@@ -1,18 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package sprites;
 
 
 public abstract class Sprite {
-	protected int x, y;
+	protected int x, y, width, height;
 	
-	public Sprite(int x, int y) {
-		setX(x);
-		setY(y);
-	}
+	public Sprite(int x, int y, int width, int height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
 
 	public int getX() {
 		return x;
@@ -30,10 +27,26 @@ public abstract class Sprite {
 		this.y = y;
 	}
 
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
 	
 	public abstract void pintar();
 
 	public abstract void animar();
 	
 	public abstract int getVidas();
+
 }

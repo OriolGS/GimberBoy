@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package model;
 
 import java.util.LinkedList;
@@ -21,7 +16,7 @@ public class ListModelDeJoc extends Observable {
 	// Patró Adapter, ROL Adaptad
 
 	private GimberBoy g = new GimberBoy();
-	private Marcador m = new Marcador(15, 15);
+	private Marcador m = new Marcador();
 	public NauEspacial n;
 
 	public LinkedList<Sprite> vEntes = new LinkedList<Sprite>();
@@ -38,9 +33,10 @@ public class ListModelDeJoc extends Observable {
 	}
 
 	public void iniciarJoc() {
-		// TODO
+		// TODO: show initial srpites
 		vEntes.add(0, new Fons());
-		vEntes.add(1, new GimberBoy());
+		vEntes.add(1, g);
+		vEntes.add(2, m);
 
 	}
 
@@ -55,7 +51,7 @@ public class ListModelDeJoc extends Observable {
 
 		while (iter.hasNext()) {
 			s = iter.next();
-			s.animar();
+			s.animar(); // Show sprites in game
 		}
 
 		while (iterBala.hasNext()) {
@@ -66,7 +62,9 @@ public class ListModelDeJoc extends Observable {
 				balas.remove(b);
 			}
 		}
-		// TODO 3: Patró Observer: ROL Observable, marca el objeto como cambiado
+		
+		setChanged();
+    	notifyObservers();
 
 	}
 

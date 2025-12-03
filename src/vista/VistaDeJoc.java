@@ -43,7 +43,7 @@ public class VistaDeJoc extends JFrame {
 	// Inicialización de components de Jborland 
 	private void composite() throws Exception {
 		this.setSize(new Dimension(ZonaDeJoc.ANCHO, ZonaDeJoc.ALTO + 20));
-		this.setTitle("Max&Oriol");  
+		this.setTitle("Max&Oriol");   
 		this.setLayout( new BorderLayout(5,5));
 		// instanciem el JPANEL zona de joc
 		PanelZonaJoc = new ZonaDeJoc();
@@ -77,4 +77,3 @@ public class VistaDeJoc extends JFrame {
 	}
 
 }
-

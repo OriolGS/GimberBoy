@@ -2,7 +2,8 @@ package sprites;
 
 public class Bullet extends Sprite {
     public Bullet(int x, int y) {
-        super(x, y);
+        super(x, y, 10, 10);
+        //TODO Auto-generated constructor stub
     }
 
     int x, y;
@@ -25,7 +26,6 @@ public class Bullet extends Sprite {
 
     @Override
     public void pintar() {
-        
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'pintar'");
     }

@@ -3,7 +3,7 @@ package sprites;
 public class NauEspacial extends Sprite {
 
     public NauEspacial(int x, int y) {
-        super(x, y);
+        super(x, y, 10, 10);
         //TODO Auto-generated constructor stub
     }
 
