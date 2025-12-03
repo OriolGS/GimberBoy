@@ -34,7 +34,6 @@ public class Exemple extends Sprite {
 
 	@Override
 	public int getVidas() {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'getVidas'");
 	}
 

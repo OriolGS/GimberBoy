@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package controlador;
 
 import java.awt.event.MouseEvent;
@@ -10,12 +5,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import model.ListModelDeJoc;
 import vista.ZonaDeJoc;
-
-/**
- *
- * @author PA ernest
- * @version 2025
- */
 
 public class ControladorDeJoc implements MouseListener, MouseMotionListener {
 	
@@ -64,7 +53,6 @@ public class ControladorDeJoc implements MouseListener, MouseMotionListener {
 			usedTime = System.currentTimeMillis() - startTime;
 			
            if (usedTime > 1) {
-				System.out.println("temps = " + usedTime + "  frames/s = " + 1000 / usedTime);
 			} 
 		}
 	}
@@ -79,7 +67,7 @@ public class ControladorDeJoc implements MouseListener, MouseMotionListener {
 	}
 
 	public void mousePressed(MouseEvent e) {
-		ListModelDeJoc model = ListModelDeJoc.getInstancia(); // patró SINGLETON
+		ListModelDeJoc model = ListModelDeJoc.getInstancia(); // SINGLETON
 		model.hemPitjatElMouse();
 	}
 

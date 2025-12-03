@@ -49,11 +49,10 @@ public class GestorDeDibuix {
         g.drawString(texto, x + 5, y + 12);
     }
 
-    // carreguem la llista d'imatges en la cache i despres el mediatraker les
-    // carrega
+    // carreguem la llista d'imatges en la cache i despres el mediatraker les carrega
     public void afegirImatge(String key, Image imagen) throws InterruptedException {
         cacheDeImatges.put(key.toUpperCase(), imagen);
-        mt.addImage(imagen, 0); // llença excepció si no es carrega bé
-        mt.waitForAll(); // això es diu tracking
+        mt.addImage(imagen, 0); // thows exception if not loaded correctly
+        mt.waitForAll(); // tracking
     }
 }

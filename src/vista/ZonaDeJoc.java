@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import model.ListModelDeJoc;
 
+@SuppressWarnings("deprecation")
 public class ZonaDeJoc extends JPanel implements Observer{
 	
 
@@ -103,17 +104,14 @@ public class ZonaDeJoc extends JPanel implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// interesada en recibir notificaciones o actualizaciones de un objeto observable. Al detectar cambios llamar a repaint();
-		// TODO Auto-generated method stub
 		repaint();
-		// throw new UnsupportedOperationException("Unimplemented method 'update'");
 	}
 
 	public void addMouseListener(ControladorDeJoc controlador){
-		// super.addMouseListener(controlador);
+		super.addMouseListener(controlador);
 	}
 
 	public void addMouseMotionListener(ControladorDeJoc controlador){
-		// super.addMouseMotionListener(controlador);
+		super.addMouseMotionListener(controlador);
 	}
 }

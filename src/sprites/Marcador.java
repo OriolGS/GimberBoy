@@ -19,12 +19,10 @@ public class Marcador extends Sprite {
 
     @Override
     public void animar() {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public int getVidas() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getVidas'");
     }
     

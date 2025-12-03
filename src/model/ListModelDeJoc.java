@@ -5,12 +5,9 @@ import java.util.ListIterator;
 import java.util.Observable;
 
 import sprites.*;
-import controlador.ControladorDeJoc;
-import controlador.GestorDeDibuix;
-
-import sprites.*;
 import vista.ZonaDeJoc;
 
+@SuppressWarnings("deprecation")
 public class ListModelDeJoc extends Observable {
 
 	// Patró Adapter, ROL Adaptad
@@ -33,7 +30,7 @@ public class ListModelDeJoc extends Observable {
 	}
 
 	public void iniciarJoc() {
-		// TODO: show initial srpites
+		// Creates initial entities of the game
 		vEntes.add(0, new Fons());
 		vEntes.add(1, g);
 		vEntes.add(2, m);
@@ -92,22 +89,21 @@ public class ListModelDeJoc extends Observable {
 	}
 
 	public void coordenadesDelMouse(int x, int y) {
-		Sprite s;
-		// TODO 3: Asignar Mouse a Gimberboy
-		ListIterator<Sprite> iter = vEntes.listIterator(this.g.getX());
-		s = iter.next();
-		if (y >= ZonaDeJoc.ALTO / 3 * 2 + 15) { // movemos y
-			y = ZonaDeJoc.ALTO - 50;
-		} else {
+		if (y >= ZonaDeJoc.ALTO - g.getHeight() - 20) {
+			// Mouse below screen
+			y = ZonaDeJoc.ALTO - g.getHeight() - 20;
+		} else if (y <= ZonaDeJoc.ALTO / 3 * 2) {
+			// Mouse above expected zone
 			y = ZonaDeJoc.ALTO / 3 * 2;
 		}
-		if (x >= ZonaDeJoc.ANCHO - 40) { // movemos x
-			x = ZonaDeJoc.ANCHO - 40;
+
+		if (x >= ZonaDeJoc.ANCHO - g.getWidth() - 20) {
+			x = ZonaDeJoc.ANCHO - g.getWidth() - 20;
 		} else if (x <= 10) {
 			x = 10;
 		}
-		s.setX(x);
-		s.setY(y);
+		g.setX(x);
+		g.setY(y);
 	}
 
 	public void añadirEsferaL(){
@@ -118,4 +114,4 @@ public class ListModelDeJoc extends Observable {
 
 	}
 
-} // end ControladorDeJoc
+}

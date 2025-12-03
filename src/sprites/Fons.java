@@ -22,13 +22,10 @@ public class Fons extends Sprite {
   
 
     @Override
-    public void animar() {
-        System.out.println("  ");
-    }
+    public void animar() {}
 
     @Override
     public int getVidas() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getVidas'");
     }
 
