@@ -14,7 +14,7 @@ public class ListModelDeJoc extends Observable {
 
 	private GimberBoy g = new GimberBoy();
 	private Marcador m = new Marcador();
-	public NauEspacial n;
+	public NauEspacial n = new NauEspacial();
 
 	public LinkedList<Sprite> vEntes = new LinkedList<Sprite>();
 	public LinkedList<Sprite> balas = new LinkedList<Sprite>();
@@ -34,13 +34,10 @@ public class ListModelDeJoc extends Observable {
 		vEntes.add(0, new Fons());
 		vEntes.add(1, g);
 		vEntes.add(2, m);
-
+		vEntes.add(3, n);
 	}
 
 	public void animarJoc() {
-
-		// aqui controlar listas clon de enemigos y balas
-
 		Sprite s;
 		Sprite b;
 		ListIterator<Sprite> iter = ((LinkedList<Sprite>) vEntes.clone()).listIterator(0);
@@ -53,7 +50,7 @@ public class ListModelDeJoc extends Observable {
 
 		while (iterBala.hasNext()) {
 			b = iterBala.next();
-			if (b.getVidas() > 0) {
+			if (b.getLives() > 0) {
 				b.animar();
 			} else {
 				balas.remove(b);
@@ -102,6 +99,7 @@ public class ListModelDeJoc extends Observable {
 		}
 		g.setX(x);
 		g.setY(y);
+		
 	}
 
 	public void añadirEsferaL(){

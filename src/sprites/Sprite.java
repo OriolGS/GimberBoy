@@ -1,14 +1,16 @@
 package sprites;
 
+import model.ListModelDeJoc;
 
 public abstract class Sprite {
-	protected int x, y, width, height;
+	protected int x, y, width, height, lives;
 	
-	public Sprite(int x, int y, int width, int height) {
+	public Sprite(int x, int y, int width, int height, int lives) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.lives = lives;
     }
 
 	public int getX() {
@@ -43,10 +45,26 @@ public abstract class Sprite {
 		this.height = height;
 	}
 	
+	public int getLives() {
+		return lives;
+	}
+
+	public void setLives(int lives) {
+		this.lives = lives;
+
+		if (this.lives == 0) {
+			// TODO: Show an ID and name to have a better notification
+			killSprite();
+		}
+	}
+
 	public abstract void pintar();
 
 	public abstract void animar();
-	
-	public abstract int getVidas();
+
+	public void killSprite() {
+		ListModelDeJoc.getInstancia().vEntes.remove(this);
+		System.out.println("Sprite destroyed");
+	}
 
 }

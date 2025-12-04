@@ -10,8 +10,7 @@ public class Fons extends Sprite {
     }
     
     public Fons(int x, int y) {
-        super(x, y, ZonaDeJoc.ANCHO, ZonaDeJoc.ALTO);
-      
+        super(x, y, ZonaDeJoc.ANCHO, ZonaDeJoc.ALTO, 0);
     }
 
     @Override
@@ -25,8 +24,14 @@ public class Fons extends Sprite {
     public void animar() {}
 
     @Override
-    public int getVidas() {
-        throw new UnsupportedOperationException("Unimplemented method 'getVidas'");
+    public int getLives() {
+        System.err.println("This is the Background, it has no lives!");
+        return 0;
+    }
+
+    @Override
+    public void setLives(int lives) {
+        System.err.println("This is the Background, it has no lives!");
     }
 
   

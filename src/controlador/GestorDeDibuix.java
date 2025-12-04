@@ -55,4 +55,8 @@ public class GestorDeDibuix {
         mt.addImage(imagen, 0); // thows exception if not loaded correctly
         mt.waitForAll(); // tracking
     }
+
+    public void removeImage(int x, int y, int width, int height) {
+        g.fillRect(x, y, width, height);
+    }
 }

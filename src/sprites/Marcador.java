@@ -9,7 +9,7 @@ public class Marcador extends Sprite {
     private static final int HEIGHT = 20;
 
     public Marcador() {
-        super(ZonaDeJoc.ANCHO-WIDTH - 15*2, 15, WIDTH, HEIGHT);
+        super(ZonaDeJoc.ANCHO-WIDTH - 15*2, 15, WIDTH, HEIGHT, 0);
     }
 
     @Override
@@ -22,8 +22,13 @@ public class Marcador extends Sprite {
     }
 
     @Override
-    public int getVidas() {
-        throw new UnsupportedOperationException("Unimplemented method 'getVidas'");
+    public int getLives() {
+        System.err.println("This is the Scoreboard, it has no lives!");
+        return 0;
+    }
+    @Override
+    public void setLives(int lives) {
+        System.err.println("This is the Scoreboard, it has no lives!");
     }
     
 }

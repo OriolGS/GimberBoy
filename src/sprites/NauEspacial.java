@@ -1,24 +1,62 @@
 package sprites;
 
-public class NauEspacial extends Sprite {
+import javax.swing.ListModel;
 
-    public NauEspacial(int x, int y) {
-        super(x, y, 10, 10);
+import controlador.GestorDeDibuix;
+import model.ListModelDeJoc;
+import vista.ZonaDeJoc;
+
+public class NauEspacial extends Sprite {
+    private static final int WIDTH = 40;
+    private static final int HEIGHT = 25;
+    private static final int LIVES = 3;
+
+    // TODO: Improve mechanism to control appearance
+    private static int disppear_factor = 100;
+    private static int appear_factor = 75;
+    private boolean displayed = true;
+
+    public boolean isDisplayed() {
+        return displayed;
+    }
+
+    public void setDisplayed(boolean displayed) {
+        this.displayed = displayed;
+    }
+
+    public NauEspacial() {
+        super((int) (Math.random() * ZonaDeJoc.ANCHO), (int) (Math.random() * ZonaDeJoc.ALTO / 2),
+                WIDTH, HEIGHT, LIVES);
     }
 
     @Override
     public void pintar() {
-        throw new UnsupportedOperationException("Unimplemented method 'pintar'");
+        if (displayed) {
+            GestorDeDibuix.getInstancia().pintar("ROBOT", getX(), getY(), getWidth(), getHeight());
+        } else {
+            GestorDeDibuix.getInstancia().removeImage(this.x, this.y, this.width, this.height);
+        }
+        isDisplayable();
     }
 
     @Override
     public void animar() {
-        throw new UnsupportedOperationException("Unimplemented method 'animar'");
     }
 
-    @Override
-    public int getVidas() {
-        throw new UnsupportedOperationException("Unimplemented method 'getVidas'");
+    // TODO: Create a factory to controll this
+    private void isDisplayable() {
+        if (disppear_factor != 0) {
+            disppear_factor --;
+            setDisplayed(true);
+        } else if (appear_factor != 0) {
+            appear_factor --;
+            setDisplayed(false);
+        } else {
+            disppear_factor = 500;
+            appear_factor = 400;
+            this.setX((int) (Math.random() * ZonaDeJoc.ANCHO));
+            this.setY((int) (Math.random() * ZonaDeJoc.ALTO / 2));
+        }
     }
-    
+
 }
