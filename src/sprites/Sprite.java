@@ -4,13 +4,15 @@ import model.ListModelDeJoc;
 
 public abstract class Sprite {
 	protected int x, y, width, height, lives;
+	protected String imageString;
 	
-	public Sprite(int x, int y, int width, int height, int lives) {
+	public Sprite(int x, int y, int width, int height, int lives, String imageString) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.lives = lives;
+		this.imageString = imageString;
     }
 
 	public int getX() {

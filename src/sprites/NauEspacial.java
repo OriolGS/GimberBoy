@@ -7,8 +7,9 @@ import model.ListModelDeJoc;
 import vista.ZonaDeJoc;
 
 public class NauEspacial extends Sprite {
+    private static final String IMAGE_STRING = "NauEspacial";
     private static final int WIDTH = 40;
-    private static final int HEIGHT = 25;
+    private static final int HEIGHT = 30;
     private static final int LIVES = 3;
 
     // TODO: Improve mechanism to control appearance
@@ -26,13 +27,13 @@ public class NauEspacial extends Sprite {
 
     public NauEspacial() {
         super((int) (Math.random() * ZonaDeJoc.ANCHO), (int) (Math.random() * ZonaDeJoc.ALTO / 2),
-                WIDTH, HEIGHT, LIVES);
+                WIDTH, HEIGHT, LIVES, IMAGE_STRING);
     }
 
     @Override
     public void pintar() {
         if (displayed) {
-            GestorDeDibuix.getInstancia().pintar("ROBOT", getX(), getY(), getWidth(), getHeight());
+            GestorDeDibuix.getInstancia().pintar(imageString, getX(), getY(), getWidth(), getHeight());
         } else {
             GestorDeDibuix.getInstancia().removeImage(this.x, this.y, this.width, this.height);
         }

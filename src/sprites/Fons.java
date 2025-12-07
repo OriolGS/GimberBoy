@@ -4,18 +4,19 @@ import controlador.GestorDeDibuix;
 import vista.ZonaDeJoc;
 
 public class Fons extends Sprite {
+    private static final String IMAGE_STRING = "FONS";
 
     public Fons() {
         this(0, 0);
     }
     
     public Fons(int x, int y) {
-        super(x, y, ZonaDeJoc.ANCHO, ZonaDeJoc.ALTO, 0);
+        super(x, y, ZonaDeJoc.ANCHO, ZonaDeJoc.ALTO, 0, IMAGE_STRING);
     }
 
     @Override
     public void pintar() {
-        GestorDeDibuix.getInstancia().pintar("FONS", getX(), getY(), getWidth(), getHeight());
+        GestorDeDibuix.getInstancia().pintar(IMAGE_STRING, getX(), getY(), getWidth(), getHeight());
     }
 
   

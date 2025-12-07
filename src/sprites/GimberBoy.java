@@ -1,26 +1,26 @@
 package sprites;
 
 import controlador.GestorDeDibuix;
-import vista.VistaDeJoc;
 import vista.ZonaDeJoc;
 
 public class GimberBoy extends Sprite {
-    private static final int WIDTH = 25;
-    private static final int HEIGHT = 40;
+    private static final String IMAGE_STRING = "GimberBoy";
+    private static final int WIDTH = 40;
+    private static final int HEIGHT = 30;
     private static final int LIVES = 3;
 
     public GimberBoy() {
-        super((ZonaDeJoc.ANCHO/2)-(WIDTH/2), (ZonaDeJoc.ALTO/3*3)-(HEIGHT*2), WIDTH, HEIGHT, LIVES);
+        super((ZonaDeJoc.ANCHO/2)-(WIDTH/2), (ZonaDeJoc.ALTO/3*3)-(HEIGHT*2), WIDTH, HEIGHT, LIVES, IMAGE_STRING);
     }
 
     public GimberBoy(int x, int y) {
-        super(x, y, WIDTH, HEIGHT, LIVES);
+        super(x, y, WIDTH, HEIGHT, LIVES, IMAGE_STRING);
     }
 
 
     @Override
     public void pintar() {
-        GestorDeDibuix.getInstancia().pintar("ROBOT", getX(), getY(), getWidth(), getHeight());
+        GestorDeDibuix.getInstancia().pintar(IMAGE_STRING, getX(), getY(), getWidth(), getHeight());
     }
 
     @Override
