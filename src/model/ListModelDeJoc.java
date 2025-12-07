@@ -103,10 +103,11 @@ public class ListModelDeJoc extends Observable {
 	}
 
 	public void añadirEsferaL(){
+		vEntes.add(new EsferaL());
 	}
 
 	public void añadirEsferaR(){
-
+		vEntes.add(new EsferaR());
 	}
 
 }
