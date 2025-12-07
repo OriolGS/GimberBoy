@@ -50,6 +50,10 @@ public abstract class Sprite {
 	public int getLives() {
 		return lives;
 	}
+	
+	public String getImageString() {
+		return imageString;
+	}
 
 	public void setLives(int lives) {
 		this.lives = lives;

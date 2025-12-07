@@ -42,7 +42,7 @@ public class VistaDeJoc extends JFrame {
 	// construim la vista: Patró composite autòmatic
 	// Inicialización de components de Jborland 
 	private void composite() throws Exception {
-		this.setSize(new Dimension(ZonaDeJoc.ANCHO, ZonaDeJoc.ALTO + 20));
+		this.setSize(new Dimension(ZonaDeJoc.ANCHO, ZonaDeJoc.ALTO + ZonaDeJoc.MARGIN));
 		this.setTitle("Max&Oriol");   
 		this.setLayout( new BorderLayout(5,5));
 		// instanciem el JPANEL zona de joc

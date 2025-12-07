@@ -80,20 +80,20 @@ public class ListModelDeJoc extends Observable {
 	}
 
 	public void hemPitjatElMouse() {
-		balas.add(new Bullet(g.getX(), g.getY() - 20));
+		balas.add(new Bullet(g.getX(), g.getY() - ZonaDeJoc.MARGIN));
 	}
 
 	public void coordenadesDelMouse(int x, int y) {
-		if (y >= ZonaDeJoc.ALTO - g.getHeight() - 20) {
+		if (y >= ZonaDeJoc.ALTO - g.getHeight() - ZonaDeJoc.MARGIN) {
 			// Mouse below screen
-			y = ZonaDeJoc.ALTO - g.getHeight() - 20;
+			y = ZonaDeJoc.ALTO - g.getHeight() - ZonaDeJoc.MARGIN;
 		} else if (y <= ZonaDeJoc.ALTO / 3 * 2) {
 			// Mouse above expected zone
 			y = ZonaDeJoc.ALTO / 3 * 2;
 		}
 
-		if (x >= ZonaDeJoc.ANCHO - g.getWidth() - 20) {
-			x = ZonaDeJoc.ANCHO - g.getWidth() - 20;
+		if (x >= ZonaDeJoc.ANCHO - g.getWidth() - ZonaDeJoc.MARGIN) {
+			x = ZonaDeJoc.ANCHO - g.getWidth() - ZonaDeJoc.MARGIN;
 		} else if (x <= 10) {
 			x = 10;
 		}
@@ -103,7 +103,6 @@ public class ListModelDeJoc extends Observable {
 	}
 
 	public void añadirEsferaL(){
-
 	}
 
 	public void añadirEsferaR(){

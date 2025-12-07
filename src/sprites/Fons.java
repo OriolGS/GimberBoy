@@ -16,7 +16,7 @@ public class Fons extends Sprite {
 
     @Override
     public void pintar() {
-        GestorDeDibuix.getInstancia().pintar(IMAGE_STRING, getX(), getY(), getWidth(), getHeight());
+        GestorDeDibuix.getInstancia().pintar(getImageString(), getX(), getY(), getWidth(), getHeight());
     }
 
   

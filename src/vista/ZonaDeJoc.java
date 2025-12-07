@@ -22,6 +22,7 @@ public class ZonaDeJoc extends JPanel implements Observer {
 	// Dimensió de la zona de joc, són constants de moment, per poder compartir-les
 	public static final int ANCHO = 1000;
 	public static final int ALTO = 750;
+	public static final int MARGIN = 20;
 
 	private final BufferedImage doblebufer; // final en properes iteracions
 	private ControladorDeJoc controlador;// controlador del game

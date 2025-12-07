@@ -1,9 +1,6 @@
 package sprites;
 
-import javax.swing.ListModel;
-
 import controlador.GestorDeDibuix;
-import model.ListModelDeJoc;
 import vista.ZonaDeJoc;
 
 public class NauEspacial extends Sprite {
@@ -26,14 +23,14 @@ public class NauEspacial extends Sprite {
     }
 
     public NauEspacial() {
-        super((int) (Math.random() * ZonaDeJoc.ANCHO), (int) (Math.random() * ZonaDeJoc.ALTO / 2),
+        super((int) (Math.random() * (ZonaDeJoc.ANCHO - WIDTH)), (int) (Math.random() * (ZonaDeJoc.ALTO / 3 * 2 - HEIGHT)),
                 WIDTH, HEIGHT, LIVES, IMAGE_STRING);
     }
 
     @Override
     public void pintar() {
         if (displayed) {
-            GestorDeDibuix.getInstancia().pintar(imageString, getX(), getY(), getWidth(), getHeight());
+            GestorDeDibuix.getInstancia().pintar(getImageString(), getX(), getY(), getWidth(), getHeight());
         } else {
             GestorDeDibuix.getInstancia().removeImage(this.x, this.y, this.width, this.height);
         }
@@ -55,8 +52,8 @@ public class NauEspacial extends Sprite {
         } else {
             disppear_factor = 500;
             appear_factor = 400;
-            this.setX((int) (Math.random() * ZonaDeJoc.ANCHO));
-            this.setY((int) (Math.random() * ZonaDeJoc.ALTO / 2));
+            this.setX((int) (Math.random() * (ZonaDeJoc.ANCHO - WIDTH)));
+            this.setY((int) (Math.random() * (ZonaDeJoc.ALTO / 3 * 2 - HEIGHT)));
         }
     }
 

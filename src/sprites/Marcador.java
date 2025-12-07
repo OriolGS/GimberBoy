@@ -14,7 +14,7 @@ public class Marcador extends Sprite {
 
     @Override
     public void pintar() {
-        GestorDeDibuix.getInstancia().pintarTexto(IMAGE_STRING, getX(), getY(), getWidth(), getHeight());
+        GestorDeDibuix.getInstancia().pintarTexto(getImageString(), getX(), getY(), getWidth(), getHeight());
     }
 
     @Override
