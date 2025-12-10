@@ -20,12 +20,12 @@ public class Bullet extends Sprite {
 
     @Override
     public void animar() {
+        setY(getY() - 2);
+        
         if (getY() <= 0 + getHeight()) {
             setLives(0);
             return;
         }
-
-        setY(getY() - 2);
     }
 
     @Override

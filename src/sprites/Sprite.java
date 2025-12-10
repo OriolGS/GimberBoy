@@ -1,10 +1,13 @@
 package sprites;
 
+import java.util.List;
+
 import model.ListModelDeJoc;
 
 public abstract class Sprite {
 	protected int x, y, width, height, lives;
 	protected String imageString;
+	protected List<Sprite> leafs = null;
 	
 	public Sprite(int x, int y, int width, int height, int lives, String imageString) {
         this.x = x;
