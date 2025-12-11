@@ -8,14 +8,19 @@ public abstract class Sprite {
 	protected int x, y, width, height, lives;
 	protected String imageString;
 	protected List<Sprite> leafs = null;
+	protected boolean isEnemy;
+	protected boolean isHittable;
+	private int marcador = 0;
 	
-	public Sprite(int x, int y, int width, int height, int lives, String imageString) {
+	public Sprite(int x, int y, int width, int height, int lives, String imageString, boolean isEnemy, boolean isHittable) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.lives = lives;
 		this.imageString = imageString;
+		this.isEnemy = isEnemy;
+		this.isHittable = isHittable;
     }
 
 	public int getX() {
@@ -73,7 +78,44 @@ public abstract class Sprite {
 
 	public void killSprite() {
 		ListModelDeJoc.getInstancia().vEntes.remove(this);
-		System.out.println("Sprite destroyed");
+		System.out.println("Sprite " +  imageString + " destroyed");
+	}
+
+
+	public List<Sprite> getLeafs() {
+		return leafs;
+	}
+
+	public void setLeafs(List<Sprite> leafs) {
+		this.leafs = leafs;
+	}
+
+	public boolean isEnemy() {
+		return isEnemy;
+	}
+
+	public void setEnemy(boolean isEnemy) {
+		this.isEnemy = isEnemy;
+	}
+
+	public boolean isHittable() {
+		return isHittable;
+	}
+
+	public void setImageString(String imageString) {
+		this.imageString = imageString;
+	}
+
+	public void setHittable(boolean isHittable) {
+		this.isHittable = isHittable;
+	}
+
+	public int getMarcador() {
+		return marcador;
+	}
+
+	public void setMarcador(int marcador) {
+		this.marcador = marcador;
 	}
 
 }

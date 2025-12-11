@@ -1,10 +1,13 @@
 package sprites;
 
 import controlador.GestorDeDibuix;
+import model.ListModelDeJoc;
 import vista.ZonaDeJoc;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import javax.swing.ListModel;
 
 public class NauEspacial extends Sprite {
 
@@ -12,6 +15,9 @@ public class NauEspacial extends Sprite {
     private static final int WIDTH = 40;
     private static final int HEIGHT = 30;
     private static final int LIVES = 3;
+    private static final boolean IS_ENEMY = true;
+    private static final boolean IS_HITTABLE = true;
+
 
     private boolean displayed = true;
     private static int disppear_factor = 100;
@@ -27,13 +33,13 @@ public class NauEspacial extends Sprite {
 
     public NauEspacial() {
         super((int) (Math.random() * (ZonaDeJoc.ANCHO - WIDTH)), (int) (Math.random() * (ZonaDeJoc.ALTO / 3 * 2 - HEIGHT)),
-              WIDTH, HEIGHT, LIVES, IMAGE_STRING);
+              WIDTH, HEIGHT, LIVES, IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
         this.leafs = new ArrayList<>();
     }
 
     // Composite method
     public void shoot() {
-        if (displayed && leafs.size() <= 5) {
+        if (displayed && this.leafs.size() < 1) {
             Misil m = new Misil(x + width / 2 - 3, y + 10, this);
             leafs.add(m);
         }
@@ -43,22 +49,22 @@ public class NauEspacial extends Sprite {
     public void pintar() {
         if (displayed) {
             GestorDeDibuix.getInstancia().pintar(getImageString(), getX(), getY(), getWidth(), getHeight());
-            // TODO: create delay
-            shoot();
         } else {
-            GestorDeDibuix.getInstancia().removeImage(this.x, this.y, this.width, this.height);
+            GestorDeDibuix.getInstancia().removeImage(getX(), getY(), getWidth(), getHeight());
         }
 
-        for (Sprite s : leafs) {
-            s.pintar();
-        }
+        // for (Sprite s : leafs) {
+        //     s.pintar();
+        // }
 
         isDisplayable();
-    }
+}
+
 
     @Override
     public void animar() {
-        // Animate children
+        this.shoot();
+
         Iterator<Sprite> it = leafs.iterator();
         while (it.hasNext()) {
             Sprite s = it.next();
@@ -77,6 +83,8 @@ public class NauEspacial extends Sprite {
         } else if (appear_factor != 0) {
             appear_factor --;
             setDisplayed(false);
+            this.setX(ZonaDeJoc.ANCHO * 2);
+            this.setY(ZonaDeJoc.ALTO * 2);
         } else {
             disppear_factor = 500;
             appear_factor = 400;

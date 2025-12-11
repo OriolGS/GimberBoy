@@ -8,13 +8,15 @@ public class EsferaR extends Sprite {
     private static final int WIDTH = 20;
     private static final int HEIGHT = 20;
     private static final int LIVES = 1;
+    private static final boolean IS_ENEMY = true;
+    private static final boolean IS_HITTABLE = true;
     private boolean goRight = false;
     private boolean goDown = true;
 
     public EsferaR() {
         super((int) (Math.random() * (ZonaDeJoc.ANCHO - ZonaDeJoc.ANCHO / 2) + ZonaDeJoc.ANCHO / 2), 
             (int) (Math.random() * (ZonaDeJoc.ALTO / 3)),
-            WIDTH, HEIGHT, LIVES, IMAGE_STRING);
+            WIDTH, HEIGHT, LIVES, IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
     }
 
     @Override

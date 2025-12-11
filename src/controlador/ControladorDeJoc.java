@@ -21,6 +21,8 @@ public class ControladorDeJoc implements MouseListener, MouseMotionListener {
        
 	public void jugar() {
 		ListModelDeJoc.getInstancia().iniciarJoc();
+		vista.addMouseListener(this);
+		vista.addMouseMotionListener(this);          
 	   
 		// game loop for DoomsDay
 		while (true) {
@@ -31,8 +33,6 @@ public class ControladorDeJoc implements MouseListener, MouseMotionListener {
            
            // comportaments asincrons: ratoli 
            // utilitzant els mouseListener i mouseMotionListener
-           vista.addMouseListener(this);
-           vista.addMouseMotionListener(this);          
 
            j++;
            i++;
@@ -67,8 +67,9 @@ public class ControladorDeJoc implements MouseListener, MouseMotionListener {
 	}
 
 	public void mousePressed(MouseEvent e) {
-		ListModelDeJoc model = ListModelDeJoc.getInstancia(); // SINGLETON
-		model.hemPitjatElMouse();
+		ListModelDeJoc gm = ListModelDeJoc.getInstancia();
+		gm.hemPitjatElMouse();
+		gm.notifyObservers();
 	}
 
 	public void mouseMoved(MouseEvent e) {
@@ -85,10 +86,11 @@ public class ControladorDeJoc implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		ListModelDeJoc gm = ListModelDeJoc.getInstancia();
-		gm.hemPitjatElMouse();
-		gm.notifyObservers();
+		// System.out.println("Mouse clicked");
+		// // TODO Auto-generated method stub
+		// ListModelDeJoc gm = ListModelDeJoc.getInstancia();
+		// gm.hemPitjatElMouse();
+		// gm.notifyObservers();
 		
 	}
 
