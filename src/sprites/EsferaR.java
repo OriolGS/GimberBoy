@@ -3,7 +3,7 @@ package sprites;
 import controlador.GestorDeDibuix;
 import vista.ZonaDeJoc;
 
-public class EsferaR extends Sprite {
+public class EsferaR extends Gun {
     private static final String IMAGE_STRING = "BolaR";
     private static final int WIDTH = 20;
     private static final int HEIGHT = 20;
@@ -42,6 +42,8 @@ public class EsferaR extends Sprite {
         } else if (getY() <= getHeight() + ZonaDeJoc.MARGIN) {
             setGoDown(true);
         }
+
+        checkCollision();
     }
 
     public void setGoRight(boolean goRight) {
@@ -58,6 +60,15 @@ public class EsferaR extends Sprite {
 
     public boolean isGoDown() {
         return goDown;
+    }
+
+    @Override
+    public void onCollision(Sprite sprite) {
+        if (sprite instanceof Gun) return;
+        
+        sprite.setLives(sprite.getLives() - 1);
+        this.setGoDown(!this.isGoDown());
+        this.setGoRight(!this.isGoRight());
     }
 
 }
