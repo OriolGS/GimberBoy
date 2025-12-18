@@ -1,4 +1,3 @@
-
 package vista;
 
 import controlador.ControladorDeJoc;
@@ -71,14 +70,14 @@ public class ZonaDeJoc extends JPanel implements Observer {
 		// Utilitzem el Patró singlenton per tal inicialitzar el motor graphic
 		GestorDeDibuix.getInstancia().inicializar(new MediaTracker(this), doblebufer.getGraphics(), this);
 		String cacheImatges[][] = {
-			{ "FONS", "bg.png" },
-			{ "GimberBoy", "GimberBoy.gif" },
-			{ "NauEspacial", "NauEspacial.png" },
-			{ "BolaL", "BolaL.gif" },
-			{ "BolaR", "BolaR.gif" },
-			{ "Bullet", "Bullet.gif" },
-			{ "Misil", "Misil.png" }
-			};
+				{ "FONS", "bg.png" },
+				{ "GimberBoy", "GimberBoy.gif" },
+				{ "NauEspacial", "NauEspacial.png" },
+				{ "BolaL", "BolaL.gif" },
+				{ "BolaR", "BolaR.gif" },
+				{ "Bullet", "Bullet.gif" },
+				{ "Misil", "Misil.png" }
+		};
 
 		try {
 			// Carreguem imatge a imatge al gestor De Dibuix
@@ -96,13 +95,12 @@ public class ZonaDeJoc extends JPanel implements Observer {
 		URL url = null;
 		try {
 			url = getClass().getClassLoader().getResource(nombre);
-			System.out.println(url);
 			// la classe ImageIO carrega l'imatge en un BufferedImatge
 			return ImageIO.read(url);
 
 		} catch (Exception e) {
-			System.out.println("No s'ha pogut carregar la imatge " + nombre + " de " + url);
-			System.out.println("L'ha sigut: " + e.getClass().getName() + " " + e.getMessage());
+			System.err.println("No s'ha pogut carregar la imatge " + nombre + " de " + url);
+			System.err.println("L'ha sigut: " + e.getClass().getName() + " " + e.getMessage());
 			System.exit(0);
 			return null;
 		}

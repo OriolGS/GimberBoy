@@ -14,9 +14,9 @@ public class EsferaR extends Sprite {
     private boolean goDown = true;
 
     public EsferaR() {
-        super((int) (Math.random() * (ZonaDeJoc.ANCHO - ZonaDeJoc.ANCHO / 2) + ZonaDeJoc.ANCHO / 2), 
-            (int) (Math.random() * (ZonaDeJoc.ALTO / 3)),
-            WIDTH, HEIGHT, LIVES, IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
+        super((int) (Math.random() * (ZonaDeJoc.ANCHO - ZonaDeJoc.ANCHO / 2) + ZonaDeJoc.ANCHO / 2),
+                (int) (Math.random() * (ZonaDeJoc.ALTO / 3)),
+                WIDTH, HEIGHT, LIVES, IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
     }
 
     @Override
@@ -30,14 +30,14 @@ public class EsferaR extends Sprite {
         y = isGoDown() ? getY() + 4 : getY() - 4;
         setX(x);
         setY(y);
-        
+
         if (getX() >= (ZonaDeJoc.ANCHO - getWidth() - ZonaDeJoc.MARGIN)) {
             setGoRight(false);
         } else if (getX() <= (getWidth() + ZonaDeJoc.MARGIN)) {
             setGoRight(true);
         }
 
-        if (getY() >= ((ZonaDeJoc.ALTO / 3 * 2)   - getHeight() - ZonaDeJoc.MARGIN)) {
+        if (getY() >= ((ZonaDeJoc.ALTO / 3 * 2) - getHeight() - ZonaDeJoc.MARGIN)) {
             setGoDown(false);
         } else if (getY() <= getHeight() + ZonaDeJoc.MARGIN) {
             setGoDown(true);

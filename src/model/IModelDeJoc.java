@@ -2,7 +2,6 @@ package model;
 
 import sprites.Sprite;
 
-
 // TODO 1: Patró Adapter ROL 
 public interface IModelDeJoc {
 
@@ -17,7 +16,7 @@ public interface IModelDeJoc {
 	void animarJoc();
 
 	void pintarJoc();
-	
+
 	void gestorColisions();
 
 }

@@ -1,7 +1,5 @@
 package sprites;
 
-import javax.swing.ListModel;
-
 import controlador.GestorDeDibuix;
 import model.ListModelDeJoc;
 import vista.ZonaDeJoc;
@@ -15,13 +13,13 @@ public class GimberBoy extends Sprite {
     private static final boolean IS_HITTABLE = true;
 
     public GimberBoy() {
-        super((ZonaDeJoc.ANCHO/2)-(WIDTH/2), (ZonaDeJoc.ALTO/3*3)-(HEIGHT*2), WIDTH, HEIGHT, LIVES, IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
+        super((ZonaDeJoc.ANCHO / 2) - (WIDTH / 2), (ZonaDeJoc.ALTO / 3 * 3) - (HEIGHT * 2), WIDTH, HEIGHT, LIVES,
+                IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
     }
 
     public GimberBoy(int x, int y) {
         super(x, y, WIDTH, HEIGHT, LIVES, IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
     }
-
 
     @Override
     public void pintar() {
@@ -29,22 +27,22 @@ public class GimberBoy extends Sprite {
     }
 
     @Override
-    public void animar() {}
+    public void animar() {
+    }
 
     @Override
     public void setLives(int lives) {
-        // TODO Auto-generated method stub
         super.setLives(lives);
         if (super.getLives() == 0) {
             System.exit(0);
         }
     }
-    
+
     @Override
     public void setMarcador(int marcador) {
         super.setMarcador(marcador);
         ListModelDeJoc.getInstancia().m.setImageString(String.valueOf(marcador));
 
     }
-    
+
 }

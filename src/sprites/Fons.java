@@ -11,7 +11,7 @@ public class Fons extends Sprite {
     public Fons() {
         this(0, 0);
     }
-    
+
     public Fons(int x, int y) {
         super(x, y, ZonaDeJoc.ANCHO, ZonaDeJoc.ALTO, 0, IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
     }
@@ -21,10 +21,9 @@ public class Fons extends Sprite {
         GestorDeDibuix.getInstancia().pintar(getImageString(), getX(), getY(), getWidth(), getHeight());
     }
 
-  
-
     @Override
-    public void animar() {}
+    public void animar() {
+    }
 
     @Override
     public int getLives() {
@@ -37,5 +36,4 @@ public class Fons extends Sprite {
         System.err.println("This is the Background, it has no lives!");
     }
 
-  
 }

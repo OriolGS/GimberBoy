@@ -1,13 +1,10 @@
 package sprites;
 
 import controlador.GestorDeDibuix;
-import model.ListModelDeJoc;
 import vista.ZonaDeJoc;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import javax.swing.ListModel;
 
 public class NauEspacial extends Sprite {
 
@@ -18,12 +15,11 @@ public class NauEspacial extends Sprite {
     private static final boolean IS_ENEMY = true;
     private static final boolean IS_HITTABLE = true;
 
-
     private boolean displayed = true;
     private static int disppear_factor = 100;
     private static int appear_factor = 75;
 
-        public boolean isDisplayed() {
+    public boolean isDisplayed() {
         return displayed;
     }
 
@@ -32,8 +28,9 @@ public class NauEspacial extends Sprite {
     }
 
     public NauEspacial() {
-        super((int) (Math.random() * (ZonaDeJoc.ANCHO - WIDTH)), (int) (Math.random() * (ZonaDeJoc.ALTO / 3 * 2 - HEIGHT)),
-              WIDTH, HEIGHT, LIVES, IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
+        super((int) (Math.random() * (ZonaDeJoc.ANCHO - WIDTH)),
+                (int) (Math.random() * (ZonaDeJoc.ALTO / 3 * 2 - HEIGHT)),
+                WIDTH, HEIGHT, LIVES, IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
         this.leafs = new ArrayList<>();
     }
 
@@ -53,13 +50,8 @@ public class NauEspacial extends Sprite {
             GestorDeDibuix.getInstancia().removeImage(getX(), getY(), getWidth(), getHeight());
         }
 
-        // for (Sprite s : leafs) {
-        //     s.pintar();
-        // }
-
         isDisplayable();
-}
-
+    }
 
     @Override
     public void animar() {
@@ -78,10 +70,10 @@ public class NauEspacial extends Sprite {
 
     private void isDisplayable() {
         if (disppear_factor != 0) {
-            disppear_factor --;
+            disppear_factor--;
             setDisplayed(true);
         } else if (appear_factor != 0) {
-            appear_factor --;
+            appear_factor--;
             setDisplayed(false);
             this.setX(ZonaDeJoc.ANCHO * 2);
             this.setY(ZonaDeJoc.ALTO * 2);

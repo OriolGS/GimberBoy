@@ -1,7 +1,5 @@
 package sprites;
 
-import java.util.List;
-
 import controlador.GestorDeDibuix;
 import model.ListModelDeJoc;
 import vista.ZonaDeJoc;
@@ -36,23 +34,22 @@ public class Bullet extends Sprite {
         int maxY = getY() + getHeight();
 
         for (Sprite sprite : ListModelDeJoc.getInstancia().vEntes) {
-            if (!sprite.isHittable()) continue;
+            if (!sprite.isHittable())
+                continue;
 
             if (this.isEnemy != sprite.isEnemy()) {
 
-                boolean overlap =
-                    sprite.getX() < maxX &&
-                    sprite.getX() + sprite.getWidth() > minX &&
-                    sprite.getY() < maxY &&
-                    sprite.getY() + sprite.getHeight() > minY;
+                boolean overlap = sprite.getX() < maxX &&
+                        sprite.getX() + sprite.getWidth() > minX &&
+                        sprite.getY() < maxY &&
+                        sprite.getY() + sprite.getHeight() > minY;
 
                 if (overlap) {
 
                     sprite.setLives(sprite.getLives() - 1);
                     this.setLives(0);
                     if (!this.isEnemy && sprite.getLives() == 0) {
-                        this.origin.setMarcador(this.origin.getMarcador()+1);
-                        System.out.println("Score updated to: " + this.origin.getMarcador());
+                        this.origin.setMarcador(this.origin.getMarcador() + 1);
                     }
                     return;
                 }

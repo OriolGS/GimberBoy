@@ -11,7 +11,7 @@ public class Marcador extends Sprite {
     private static final boolean IS_HITTABLE = false;
 
     public Marcador() {
-        super(ZonaDeJoc.ANCHO-WIDTH - 15*2, 15, WIDTH, HEIGHT, 0, IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
+        super(ZonaDeJoc.ANCHO - WIDTH - 15 * 2, 15, WIDTH, HEIGHT, 0, IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
     }
 
     @Override
@@ -28,6 +28,7 @@ public class Marcador extends Sprite {
         System.err.println("This is the Scoreboard, it has no lives!");
         return 0;
     }
+
     @Override
     public void setLives(int lives) {
         System.err.println("This is the Scoreboard, it has no lives!");
@@ -37,5 +38,5 @@ public class Marcador extends Sprite {
     public void setImageString(String contador) {
         super.setImageString(IMAGE_STRING + contador);
     }
-    
+
 }

@@ -11,17 +11,18 @@ public abstract class Sprite {
 	protected boolean isEnemy;
 	protected boolean isHittable;
 	private int marcador = 0;
-	
-	public Sprite(int x, int y, int width, int height, int lives, String imageString, boolean isEnemy, boolean isHittable) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.lives = lives;
+
+	public Sprite(int x, int y, int width, int height, int lives, String imageString, boolean isEnemy,
+			boolean isHittable) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.lives = lives;
 		this.imageString = imageString;
 		this.isEnemy = isEnemy;
 		this.isHittable = isHittable;
-    }
+	}
 
 	public int getX() {
 		return x;
@@ -54,11 +55,11 @@ public abstract class Sprite {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
+
 	public int getLives() {
 		return lives;
 	}
-	
+
 	public String getImageString() {
 		return imageString;
 	}
@@ -78,9 +79,8 @@ public abstract class Sprite {
 
 	public void killSprite() {
 		ListModelDeJoc.getInstancia().vEntes.remove(this);
-		System.out.println("Sprite " +  imageString + " destroyed");
+		System.out.println("Sprite " + imageString + " destroyed");
 	}
-
 
 	public List<Sprite> getLeafs() {
 		return leafs;

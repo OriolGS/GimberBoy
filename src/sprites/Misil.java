@@ -2,7 +2,6 @@ package sprites;
 
 import controlador.GestorDeDibuix;
 import model.ListModelDeJoc;
-import vista.VistaDeJoc;
 import vista.ZonaDeJoc;
 
 public class Misil extends Sprite {
@@ -34,20 +33,19 @@ public class Misil extends Sprite {
         int maxY = getY() + getHeight();
 
         for (Sprite sprite : ListModelDeJoc.getInstancia().vEntes) {
-            if (!sprite.isHittable()) continue;
+            if (!sprite.isHittable())
+                continue;
 
             if (this.isEnemy != sprite.isEnemy()) {
-                boolean overlap =
-                    sprite.getX() < maxX &&
-                    sprite.getX() + sprite.getWidth() > minX &&
-                    sprite.getY() < maxY &&
-                    sprite.getY() + sprite.getHeight() > minY;
+                boolean overlap = sprite.getX() < maxX &&
+                        sprite.getX() + sprite.getWidth() > minX &&
+                        sprite.getY() < maxY &&
+                        sprite.getY() + sprite.getHeight() > minY;
 
                 if (overlap) {
-                    // System.out.println("Hit detected");
 
                     sprite.setLives(sprite.getLives() - 1);
-                    this.setLives(0);   // Remove missile
+                    this.setLives(0); // Remove missile
                     return;
                 }
             }
@@ -61,7 +59,6 @@ public class Misil extends Sprite {
     @Override
     public void killSprite() {
         ListModelDeJoc.getInstancia().balas.remove(this);
-		System.out.println("Misil destroyed");
     }
 
 }

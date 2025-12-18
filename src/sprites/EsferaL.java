@@ -29,14 +29,14 @@ public class EsferaL extends Sprite {
         y = isGoDown() ? getY() + 2 : getY() - 2;
         setX(x);
         setY(y);
-        
+
         if (getX() >= (ZonaDeJoc.ANCHO - getWidth() - ZonaDeJoc.MARGIN)) {
             setGoRight(false);
         } else if (getX() <= (getWidth() + ZonaDeJoc.MARGIN)) {
             setGoRight(true);
         }
 
-        if (getY() >= ((ZonaDeJoc.ALTO / 3 * 2)   - getHeight() - ZonaDeJoc.MARGIN)) {
+        if (getY() >= ((ZonaDeJoc.ALTO / 3 * 2) - getHeight() - ZonaDeJoc.MARGIN)) {
             setGoDown(false);
         } else if (getY() <= getHeight() + ZonaDeJoc.MARGIN) {
             setGoDown(true);

@@ -26,13 +26,12 @@ public class ListModelDeJoc extends Observable {
 	public static ListModelDeJoc getInstancia() {
 		if (instancia == null) {
 			instancia = new ListModelDeJoc();
-		} 
+		}
 		return instancia;
 	}
 
 	public void iniciarJoc() {
 		// Creates initial entities of the game
-		// vEntes.add(0, new Fons());
 		vEntes.add(0, g);
 		vEntes.add(1, m);
 		vEntes.add(2, n);
@@ -41,13 +40,14 @@ public class ListModelDeJoc extends Observable {
 	public void animarJoc() {
 		Sprite s;
 		Sprite b;
+		@SuppressWarnings("unchecked")
 		ListIterator<Sprite> iter = ((LinkedList<Sprite>) vEntes.clone()).listIterator(0);
+		@SuppressWarnings("unchecked")
 		ListIterator<Sprite> iterBala = ((LinkedList<Sprite>) balas.clone()).listIterator(0);
 		while (iter.hasNext()) {
 			s = iter.next();
 			s.animar(); // Show sprites in game
 		}
-
 
 		while (iterBala.hasNext()) {
 			b = iterBala.next();
@@ -57,18 +57,20 @@ public class ListModelDeJoc extends Observable {
 				balas.remove(b);
 			}
 		}
-		
+
 		setChanged();
-    	notifyObservers();
+		notifyObservers();
 
 	}
 
 	public void pintarJoc() {
 		Sprite s;
 		Sprite b;
+		@SuppressWarnings("unchecked")
 		ListIterator<Sprite> iter = ((LinkedList<Sprite>) vEntes.clone()).listIterator(0);
+		@SuppressWarnings("unchecked")
 		ListIterator<Sprite> iterBala = ((LinkedList<Sprite>) balas.clone()).listIterator(0);
-		
+
 		if (f != null) {
 			f.pintar();
 		}
@@ -85,7 +87,7 @@ public class ListModelDeJoc extends Observable {
 	}
 
 	public void hemPitjatElMouse() {
-		balas.add(new Bullet(g.getX(), g.getY() - ZonaDeJoc.MARGIN,this.g));
+		balas.add(new Bullet(g.getX(), g.getY() - ZonaDeJoc.MARGIN, this.g));
 	}
 
 	public void coordenadesDelMouse(int x, int y) {
@@ -104,14 +106,14 @@ public class ListModelDeJoc extends Observable {
 		}
 		g.setX(x);
 		g.setY(y);
-		
+
 	}
 
-	public void añadirEsferaL(){
+	public void añadirEsferaL() {
 		vEntes.add(new EsferaL());
 	}
 
-	public void añadirEsferaR(){
+	public void añadirEsferaR() {
 		vEntes.add(new EsferaR());
 	}
 
