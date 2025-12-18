@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package model;
 
 import java.util.LinkedList;
@@ -10,19 +5,17 @@ import java.util.ListIterator;
 import java.util.Observable;
 
 import sprites.*;
-import controlador.ControladorDeJoc;
-import controlador.GestorDeDibuix;
-
-import sprites.*;
 import vista.ZonaDeJoc;
 
+@SuppressWarnings("deprecation")
 public class ListModelDeJoc extends Observable {
 
 	// Patró Adapter, ROL Adaptad
 
+	public Fons f = new Fons();
 	private GimberBoy g = new GimberBoy();
-	private Marcador m = new Marcador(15, 15);
-	public NauEspacial n;
+	public Marcador m = new Marcador();
+	public NauEspacial n = new NauEspacial();
 
 	public LinkedList<Sprite> vEntes = new LinkedList<Sprite>();
 	public LinkedList<Sprite> balas = new LinkedList<Sprite>();
@@ -33,47 +26,54 @@ public class ListModelDeJoc extends Observable {
 	public static ListModelDeJoc getInstancia() {
 		if (instancia == null) {
 			instancia = new ListModelDeJoc();
-		} 
+		}
 		return instancia;
 	}
 
 	public void iniciarJoc() {
-		// TODO
-		vEntes.add(0, new Fons());
-
+		// Creates initial entities of the game
+		vEntes.add(0, g);
+		vEntes.add(1, m);
+		vEntes.add(2, n);
 	}
 
 	public void animarJoc() {
-
-		// aqui controlar listas clon de enemigos y balas
-
 		Sprite s;
 		Sprite b;
+		@SuppressWarnings("unchecked")
 		ListIterator<Sprite> iter = ((LinkedList<Sprite>) vEntes.clone()).listIterator(0);
+		@SuppressWarnings("unchecked")
 		ListIterator<Sprite> iterBala = ((LinkedList<Sprite>) balas.clone()).listIterator(0);
-
 		while (iter.hasNext()) {
 			s = iter.next();
-			s.animar();
+			s.animar(); // Show sprites in game
 		}
 
 		while (iterBala.hasNext()) {
 			b = iterBala.next();
-			if (b.getVidas() > 0) {
+			if (b.getLives() > 0) {
 				b.animar();
 			} else {
 				balas.remove(b);
 			}
 		}
-		// TODO 3: Patró Observer: ROL Observable, marca el objeto como cambiado
+
+		setChanged();
+		notifyObservers();
 
 	}
 
 	public void pintarJoc() {
 		Sprite s;
 		Sprite b;
+		@SuppressWarnings("unchecked")
 		ListIterator<Sprite> iter = ((LinkedList<Sprite>) vEntes.clone()).listIterator(0);
+		@SuppressWarnings("unchecked")
 		ListIterator<Sprite> iterBala = ((LinkedList<Sprite>) balas.clone()).listIterator(0);
+
+		if (f != null) {
+			f.pintar();
+		}
 
 		while (iter.hasNext()) {
 			s = iter.next();
@@ -87,36 +87,34 @@ public class ListModelDeJoc extends Observable {
 	}
 
 	public void hemPitjatElMouse() {
-
-		balas.add(new Bullet(g.getX(), g.getY() - 15));
-
+		balas.add(new Bullet(g.getX(), g.getY() - ZonaDeJoc.MARGIN, this.g));
 	}
 
 	public void coordenadesDelMouse(int x, int y) {
-		Sprite s;
-		// TODO 3: Asignar Mouse a Gimberboy
-		ListIterator<Sprite> iter = vEntes.listIterator(this.g.getX());
-		s = iter.next();
-		if (y >= ZonaDeJoc.ALTO / 3 * 2 + 15) { // movemos y
-			y = ZonaDeJoc.ALTO - 50;
-		} else {
+		if (y >= ZonaDeJoc.ALTO - g.getHeight() - ZonaDeJoc.MARGIN) {
+			// Mouse below screen
+			y = ZonaDeJoc.ALTO - g.getHeight() - ZonaDeJoc.MARGIN;
+		} else if (y <= ZonaDeJoc.ALTO / 3 * 2) {
+			// Mouse above expected zone
 			y = ZonaDeJoc.ALTO / 3 * 2;
 		}
-		if (x >= ZonaDeJoc.ANCHO - 40) { // movemos x
-			x = ZonaDeJoc.ANCHO - 40;
+
+		if (x >= ZonaDeJoc.ANCHO - g.getWidth() - ZonaDeJoc.MARGIN) {
+			x = ZonaDeJoc.ANCHO - g.getWidth() - ZonaDeJoc.MARGIN;
 		} else if (x <= 10) {
 			x = 10;
 		}
-		s.setX(x);
-		s.setY(y);
-	}
-
-	public void añadirEsferaL(){
+		g.setX(x);
+		g.setY(y);
 
 	}
 
-	public void añadirEsferaR(){
-
+	public void añadirEsferaL() {
+		vEntes.add(new EsferaL());
 	}
 
-} // end ControladorDeJoc
+	public void añadirEsferaR() {
+		vEntes.add(new EsferaR());
+	}
+
+}

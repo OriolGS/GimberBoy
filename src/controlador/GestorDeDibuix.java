@@ -53,7 +53,11 @@ public class GestorDeDibuix {
     // carrega
     public void afegirImatge(String key, Image imagen) throws InterruptedException {
         cacheDeImatges.put(key.toUpperCase(), imagen);
-        mt.addImage(imagen, 0); // llença excepció si no es carrega bé
-        mt.waitForAll(); // això es diu tracking
+        mt.addImage(imagen, 0); // thows exception if not loaded correctly
+        mt.waitForAll(); // tracking
+    }
+
+    public void removeImage(int x, int y, int width, int height) {
+        g.fillRect(x, y, width, height);
     }
 }
