@@ -36,7 +36,7 @@ public class EsferaL extends Sprite {
             setGoRight(true);
         }
 
-        if (getY() >= ((ZonaDeJoc.ALTO / 3 * 2) - getHeight() - ZonaDeJoc.MARGIN)) {
+        if (getY() >= (ZonaDeJoc.ALTO - getHeight() - ZonaDeJoc.MARGIN)) {
             setGoDown(false);
         } else if (getY() <= getHeight() + ZonaDeJoc.MARGIN) {
             setGoDown(true);
