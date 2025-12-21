@@ -23,11 +23,8 @@ public class ControladorDeJoc implements MouseListener, MouseMotionListener {
 	}
 
 	public void jugar() {
-		setResponse(false);
-		setRestart(false);
-		ListModelDeJoc.getInstancia().iniciarJoc();
-		vista.addMouseListener(this);
-		vista.addMouseMotionListener(this);
+		prepareGameController();
+
 		// game loop for DoomsDay
 		while (ListModelDeJoc.getInstancia().getPlaying()) {
 
@@ -60,6 +57,15 @@ public class ControladorDeJoc implements MouseListener, MouseMotionListener {
 			if (usedTime > 1) {
 			}
 		}
+	}
+
+	private void prepareGameController() {
+		setResponse(false);
+		setRestart(false);
+		vista.addMouseListener(this);
+		vista.addMouseMotionListener(this);
+		j = 1;
+		ListModelDeJoc.getInstancia().iniciarJoc();
 	}
 
 	public void retardo() {
