@@ -24,6 +24,23 @@ public abstract class Sprite {
 		this.isHittable = isHittable;
 	}
 
+	public void setLives(int lives) {
+		this.lives = lives;
+
+		if (this.lives == 0) {
+			killSprite();
+		}
+	}
+
+	public void killSprite() {
+		ListModelDeJoc.getInstancia().eliminarElement(this, false);
+		System.out.println(imageString + " destroyed");
+	}
+
+	public abstract void pintar();
+
+	public abstract void animar();
+
 	public int getX() {
 		return x;
 	}
@@ -62,24 +79,6 @@ public abstract class Sprite {
 
 	public String getImageString() {
 		return imageString;
-	}
-
-	public void setLives(int lives) {
-		this.lives = lives;
-
-		if (this.lives == 0) {
-			// TODO: Show an ID and name to have a better notification
-			killSprite();
-		}
-	}
-
-	public abstract void pintar();
-
-	public abstract void animar();
-
-	public void killSprite() {
-		ListModelDeJoc.getInstancia().vEntes.remove(this);
-		System.out.println("Sprite " + imageString + " destroyed");
 	}
 
 	public List<Sprite> getLeafs() {

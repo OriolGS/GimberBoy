@@ -4,7 +4,8 @@ import controlador.GestorDeDibuix;
 import model.ListModelDeJoc;
 import vista.ZonaDeJoc;
 
-public class Bullet extends Sprite {
+public class Bullet extends Gun {
+    // Simulate settings
     private static final String IMAGE_STRING = "Bullet";
     private static final int WIDTH = 10;
     private static final int HEIGHT = 10;
@@ -12,11 +13,14 @@ public class Bullet extends Sprite {
     private static final boolean IS_ENEMY = false;
     private static final boolean IS_HITTABLE = true;
     private static final int SPEED = -2;
+
+    // Exclusive variable for this Sprite
     private Sprite origin;
 
     public Bullet(int x, int y, Sprite origin) {
-        super(x, y, WIDTH, HEIGHT, LIVES, IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
+        super(x - (WIDTH / 2), y, WIDTH, HEIGHT, LIVES, IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
         this.origin = origin;
+        ListModelDeJoc.getInstancia().afegirElement(this, true);
     }
 
     @Override
@@ -28,33 +32,7 @@ public class Bullet extends Sprite {
     public void animar() {
         setY(getY() + SPEED);
 
-        int minX = getX();
-        int minY = getY();
-        int maxX = getX() + getWidth();
-        int maxY = getY() + getHeight();
-
-        for (Sprite sprite : ListModelDeJoc.getInstancia().vEntes) {
-            if (!sprite.isHittable())
-                continue;
-
-            if (this.isEnemy != sprite.isEnemy()) {
-
-                boolean overlap = sprite.getX() < maxX &&
-                        sprite.getX() + sprite.getWidth() > minX &&
-                        sprite.getY() < maxY &&
-                        sprite.getY() + sprite.getHeight() > minY;
-
-                if (overlap) {
-
-                    sprite.setLives(sprite.getLives() - 1);
-                    this.setLives(0);
-                    if (!this.isEnemy && sprite.getLives() == 0) {
-                        this.origin.setMarcador(this.origin.getMarcador() + 1);
-                    }
-                    return;
-                }
-            }
-        }
+        checkCollision();
 
         if (getY() >= ZonaDeJoc.ALTO - getHeight()) {
             setLives(0);
@@ -63,7 +41,19 @@ public class Bullet extends Sprite {
 
     @Override
     public void killSprite() {
-        ListModelDeJoc.getInstancia().balas.remove(this);
+        ListModelDeJoc.getInstancia().eliminarElement(this, true);
+    }
+
+    @Override
+    public void onCollision(Sprite sprite) {
+        sprite.setLives(sprite.getLives() - 1);
+        System.out.println(sprite.getImageString() + " lives: " + sprite.getLives());
+        this.setLives(0);
+        if (sprite instanceof Misil) return;
+
+        if (!this.isEnemy && sprite.getLives() == 0) {
+            this.origin.setMarcador(this.origin.getMarcador() + 1);
+        }
     }
 
 }

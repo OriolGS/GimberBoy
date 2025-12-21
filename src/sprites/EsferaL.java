@@ -3,19 +3,24 @@ package sprites;
 import controlador.GestorDeDibuix;
 import vista.ZonaDeJoc;
 
-public class EsferaL extends Sprite {
+public class EsferaL extends Gun {
+    // Simulate settings
     private static final String IMAGE_STRING = "BolaL";
     private static final int WIDTH = 30;
     private static final int HEIGHT = 30;
     private static final int LIVES = 2;
     private static final boolean IS_ENEMY = true;
     private static final boolean IS_HITTABLE = true;
-    private boolean goRight = true;
-    private boolean goDown = true;
+
+    // Exclusive variables for this Sprite
+    private boolean goRight;
+    private boolean goDown;
 
     public EsferaL() {
         super((int) (Math.random() * ZonaDeJoc.ANCHO / 2), (int) (Math.random() * ZonaDeJoc.ALTO / 2),
                 WIDTH, HEIGHT, LIVES, IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
+        this.goRight = true;
+        this.goDown = true;
     }
 
     @Override
@@ -30,17 +35,29 @@ public class EsferaL extends Sprite {
         setX(x);
         setY(y);
 
-        if (getX() >= (ZonaDeJoc.ANCHO - getWidth() - ZonaDeJoc.MARGIN)) {
+        if (getX() >= (ZonaDeJoc.WIDTH_WITHOUT_MARGIN - getWidth())) {
             setGoRight(false);
         } else if (getX() <= (getWidth() + ZonaDeJoc.MARGIN)) {
             setGoRight(true);
         }
 
-        if (getY() >= (ZonaDeJoc.ALTO - getHeight() - ZonaDeJoc.MARGIN)) {
+        if (getY() >= (ZonaDeJoc.HEIGHT_WITHOUT_MARGIN - getHeight())) {
             setGoDown(false);
         } else if (getY() <= getHeight() + ZonaDeJoc.MARGIN) {
             setGoDown(true);
         }
+
+        checkCollision();
+    }
+
+    @Override
+    public void onCollision(Sprite sprite) {
+        if (sprite instanceof Gun)
+            return;
+
+        sprite.setLives(sprite.getLives() - 1);
+        this.setGoDown(!this.isGoDown());
+        this.setGoRight(!this.isGoRight());
     }
 
     public void setGoRight(boolean goRight) {

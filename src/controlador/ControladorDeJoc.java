@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import model.ListModelDeJoc;
+import sprites.Fons;
 import vista.ZonaDeJoc;
 
 public class ControladorDeJoc implements MouseListener, MouseMotionListener {
@@ -12,20 +13,19 @@ public class ControladorDeJoc implements MouseListener, MouseMotionListener {
 	private long usedTime;
 	// vista és el JPanel en el que visualitzem el joc
 	private final ZonaDeJoc vista;
-	private int i = (int) (Math.random() * 100 + 1);
 	private int j = 1;
+	private boolean response = false;
+	private boolean restart = false; 
 
 	public ControladorDeJoc(ZonaDeJoc vista) {
 		this.vista = vista;
 	}
 
 	public void jugar() {
-		ListModelDeJoc.getInstancia().iniciarJoc();
-		vista.addMouseListener(this);
-		vista.addMouseMotionListener(this);
+		prepareGameController();
 
 		// game loop for DoomsDay
-		while (true) {
+		while (ListModelDeJoc.getInstancia().getPlaying()) {
 
 			// tip jugable: introduim un retard per tal aturar-lo uns 20 milisegons
 			if (usedTime < 20)
@@ -36,7 +36,6 @@ public class ControladorDeJoc implements MouseListener, MouseMotionListener {
 			// utilitzant els mouseListener i mouseMotionListener
 
 			j++;
-			i++;
 			if (j >= 300) {
 				ListModelDeJoc.getInstancia().añadirEsferaL();
 				ListModelDeJoc.getInstancia().añadirEsferaR();
@@ -46,7 +45,6 @@ public class ControladorDeJoc implements MouseListener, MouseMotionListener {
 
 			// update: Comportaments sincrons
 			// generem per a cada sprite una nova posició
-			// TODO: animarJoc, pintar and notificar a los observadores
 			ListModelDeJoc.getInstancia().animarJoc();
 
 			// Render: Cridem al motor de gràfics
@@ -58,6 +56,15 @@ public class ControladorDeJoc implements MouseListener, MouseMotionListener {
 		}
 	}
 
+	private void prepareGameController() {
+		setResponse(false);
+		setRestart(false);
+		vista.addMouseListener(this);
+		vista.addMouseMotionListener(this);
+		j = 1;
+		ListModelDeJoc.getInstancia().iniciarJoc();
+	}
+
 	public void retardo() {
 		try {
 			Thread.sleep(20 - usedTime);
@@ -67,10 +74,25 @@ public class ControladorDeJoc implements MouseListener, MouseMotionListener {
 		}
 	}
 
+	public boolean gameOverView() {
+		ListModelDeJoc.getInstancia().f = new Fons("GameOver");
+		ListModelDeJoc.getInstancia().f.pintar();
+		while (!response) {
+			// Wait for user input
+			System.out.println("Click to restart");
+		}
+		return restart;
+	}
+
 	public void mousePressed(MouseEvent e) {
-		ListModelDeJoc gm = ListModelDeJoc.getInstancia();
-		gm.hemPitjatElMouse();
-		gm.notifyObservers();
+		if (ListModelDeJoc.getInstancia().getPlaying()) {
+			ListModelDeJoc gm = ListModelDeJoc.getInstancia();
+			gm.hemPitjatElMouse();
+			gm.notifyObservers();
+		} else {
+			this.setResponse(true);
+			this.setRestart(true);
+		}
 	}
 
 	public void mouseMoved(MouseEvent e) {
@@ -102,6 +124,22 @@ public class ControladorDeJoc implements MouseListener, MouseMotionListener {
 	@Override
 	public void mouseExited(MouseEvent e) {
 
+	}
+
+	public boolean isResponse() {
+		return response;
+	}
+
+	public void setResponse(boolean response) {
+		this.response = response;
+	}
+
+	public boolean isRestart() {
+		return restart;
+	}
+
+	public void setRestart(boolean restart) {
+		this.restart = restart;
 	}
 
 }

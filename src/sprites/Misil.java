@@ -4,8 +4,8 @@ import controlador.GestorDeDibuix;
 import model.ListModelDeJoc;
 import vista.ZonaDeJoc;
 
-public class Misil extends Sprite {
-
+public class Misil extends Gun {
+    // Simulate settings
     private static final int WIDTH = 10;
     private static final int HEIGHT = 10;
     private static final int SPEED = 2;
@@ -13,8 +13,8 @@ public class Misil extends Sprite {
     private static final boolean IS_HITTABLE = true;
 
     public Misil(int x, int y, Sprite origin) {
-        super(x, y, WIDTH, HEIGHT, 1, "Misil", IS_ENEMY, IS_HITTABLE);
-        ListModelDeJoc.getInstancia().balas.add(this);
+        super(x - (WIDTH / 2), y, WIDTH, HEIGHT, 1, "Misil", IS_ENEMY, IS_HITTABLE);
+        ListModelDeJoc.getInstancia().afegirElement(this, true);
     }
 
     @Override
@@ -27,29 +27,7 @@ public class Misil extends Sprite {
     public void animar() {
         setY(getY() + SPEED);
 
-        int minX = getX();
-        int minY = getY();
-        int maxX = getX() + getWidth();
-        int maxY = getY() + getHeight();
-
-        for (Sprite sprite : ListModelDeJoc.getInstancia().vEntes) {
-            if (!sprite.isHittable())
-                continue;
-
-            if (this.isEnemy != sprite.isEnemy()) {
-                boolean overlap = sprite.getX() < maxX &&
-                        sprite.getX() + sprite.getWidth() > minX &&
-                        sprite.getY() < maxY &&
-                        sprite.getY() + sprite.getHeight() > minY;
-
-                if (overlap) {
-
-                    sprite.setLives(sprite.getLives() - 1);
-                    this.setLives(0); // Remove missile
-                    return;
-                }
-            }
-        }
+        checkCollision();
 
         if (getY() >= ZonaDeJoc.ALTO - getHeight()) {
             setLives(0);
@@ -58,7 +36,13 @@ public class Misil extends Sprite {
 
     @Override
     public void killSprite() {
-        ListModelDeJoc.getInstancia().balas.remove(this);
+        ListModelDeJoc.getInstancia().eliminarElement(this, true);
+    }
+
+    @Override
+    public void onCollision(Sprite sprite) {
+        sprite.setLives(sprite.getLives() - 1);
+        this.setLives(0);
     }
 
 }

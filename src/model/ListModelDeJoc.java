@@ -8,14 +8,13 @@ import sprites.*;
 import vista.ZonaDeJoc;
 
 @SuppressWarnings("deprecation")
-public class ListModelDeJoc extends Observable {
+public class ListModelDeJoc extends Observable implements IModelDeJoc{
 
-	// Patró Adapter, ROL Adaptad
-
-	public Fons f = new Fons();
-	private GimberBoy g = new GimberBoy();
-	public Marcador m = new Marcador();
-	public NauEspacial n = new NauEspacial();
+	public Fons f = null;
+	private GimberBoy g = null;
+	public Marcador m = null;
+	public NauEspacial n = null;
+	private boolean playing = true; 
 
 	public LinkedList<Sprite> vEntes = new LinkedList<Sprite>();
 	public LinkedList<Sprite> balas = new LinkedList<Sprite>();
@@ -31,7 +30,14 @@ public class ListModelDeJoc extends Observable {
 	}
 
 	public void iniciarJoc() {
-		// Creates initial entities of the game
+		vEntes.clear();
+		balas.clear();
+		f = new Fons("FONS");
+		g = new GimberBoy();
+		m = new Marcador();
+		n = new NauEspacial();
+		playing = true;
+
 		vEntes.add(0, g);
 		vEntes.add(1, m);
 		vEntes.add(2, n);
@@ -46,7 +52,7 @@ public class ListModelDeJoc extends Observable {
 		ListIterator<Sprite> iterBala = ((LinkedList<Sprite>) balas.clone()).listIterator(0);
 		while (iter.hasNext()) {
 			s = iter.next();
-			s.animar(); // Show sprites in game
+			s.animar();
 		}
 
 		while (iterBala.hasNext()) {
@@ -87,24 +93,24 @@ public class ListModelDeJoc extends Observable {
 	}
 
 	public void hemPitjatElMouse() {
-		balas.add(new Bullet(g.getX(), g.getY() - ZonaDeJoc.MARGIN, this.g));
+		g.shoot();
 	}
 
 	public void coordenadesDelMouse(int x, int y) {
-		if (y >= ZonaDeJoc.ALTO - g.getHeight() - ZonaDeJoc.MARGIN) {
+		if (y >= ZonaDeJoc.HEIGHT_WITHOUT_MARGIN - g.getHeight()) {
 			// Mouse below screen
-			y = ZonaDeJoc.ALTO - g.getHeight() - ZonaDeJoc.MARGIN;
+			y = ZonaDeJoc.HEIGHT_WITHOUT_MARGIN - g.getHeight();
 		} else if (y <= ZonaDeJoc.ALTO / 3 * 2) {
 			// Mouse above expected zone
 			y = ZonaDeJoc.ALTO / 3 * 2;
 		}
 
-		if (x >= ZonaDeJoc.ANCHO - g.getWidth() - ZonaDeJoc.MARGIN) {
-			x = ZonaDeJoc.ANCHO - g.getWidth() - ZonaDeJoc.MARGIN;
-		} else if (x <= 10) {
-			x = 10;
+		if (x >= ZonaDeJoc.WIDTH_WITHOUT_MARGIN - g.getWidth()) {
+			x = ZonaDeJoc.WIDTH_WITHOUT_MARGIN - g.getWidth();
+		} else if (x <= ZonaDeJoc.MARGIN) {
+			x = ZonaDeJoc.MARGIN;
 		}
-		g.setX(x);
+		g.setX(x - (g.getWidth() / 2));
 		g.setY(y);
 
 	}
@@ -115,6 +121,44 @@ public class ListModelDeJoc extends Observable {
 
 	public void añadirEsferaR() {
 		vEntes.add(new EsferaR());
+	}
+
+	@Override
+	public void afegirElement(Sprite b, boolean isBullet) {
+		if (isBullet) {
+			balas.add(b);
+		} else {
+			vEntes.add(b);
+		}
+	}
+
+	@Override
+	public void eliminarElement(Sprite b, boolean isBullet) {
+		if (isBullet) {
+			balas.remove(b);
+		} else {
+			vEntes.remove(b);
+		}
+	}
+
+	@Override
+	public Sprite getSprite(int n, boolean isBullet) {
+		if (isBullet) {
+			return balas.get(n);
+		} else {
+			return vEntes.get(n);
+		}
+	}
+
+	@Override
+	public void gameOver() {
+		this.playing = false;
+		vEntes.clear();
+		balas.clear();
+	}
+
+	public boolean getPlaying() {
+		return this.playing;
 	}
 
 }
