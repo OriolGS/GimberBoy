@@ -43,10 +43,9 @@ public class GestorDeDibuix {
 
     public void pintarTexto(String texto, int x, int y, int ancho, int alto) {
         g.setColor(Color.BLUE);
-        g.fillRect(x, y, ancho, alto);
+        g.fillRect(x, y, ancho * 10, alto );
         g.setColor(Color.black);
-        g.drawRect(x, y, ancho, alto);
-        g.drawString(texto, x + 5, y + 12);
+        g.drawString(texto, x + 5, y + alto - alto / 3);
     }
 
     // carreguem la llista d'imatges en la cache i despres el mediatraker les

@@ -4,16 +4,15 @@ import controlador.GestorDeDibuix;
 import vista.ZonaDeJoc;
 
 public class Fons extends Sprite {
-    private static final String IMAGE_STRING = "FONS";
     private static final boolean IS_ENEMY = false;
     private static final boolean IS_HITTABLE = false;
 
-    public Fons() {
-        this(0, 0);
+    public Fons(String imageString) {
+        this(0, 0, imageString);
     }
 
-    public Fons(int x, int y) {
-        super(x, y, ZonaDeJoc.ANCHO, ZonaDeJoc.ALTO, 0, IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
+    public Fons(int x, int y, String imageString) {
+        super(x, y, ZonaDeJoc.ANCHO, ZonaDeJoc.ALTO, 0, imageString, IS_ENEMY, IS_HITTABLE);
     }
 
     @Override
