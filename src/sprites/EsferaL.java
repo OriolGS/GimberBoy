@@ -4,18 +4,23 @@ import controlador.GestorDeDibuix;
 import vista.ZonaDeJoc;
 
 public class EsferaL extends Gun {
+    // Simulate settings
     private static final String IMAGE_STRING = "BolaL";
     private static final int WIDTH = 30;
     private static final int HEIGHT = 30;
     private static final int LIVES = 2;
     private static final boolean IS_ENEMY = true;
     private static final boolean IS_HITTABLE = true;
-    private boolean goRight = true;
-    private boolean goDown = true;
+
+    // Exclusive variables for this Sprite
+    private boolean goRight;
+    private boolean goDown;
 
     public EsferaL() {
         super((int) (Math.random() * ZonaDeJoc.ANCHO / 2), (int) (Math.random() * ZonaDeJoc.ALTO / 2),
                 WIDTH, HEIGHT, LIVES, IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
+        this.goRight = true;
+        this.goDown = true;
     }
 
     @Override
@@ -45,6 +50,16 @@ public class EsferaL extends Gun {
         checkCollision();
     }
 
+    @Override
+    public void onCollision(Sprite sprite) {
+        if (sprite instanceof Gun)
+            return;
+
+        sprite.setLives(sprite.getLives() - 1);
+        this.setGoDown(!this.isGoDown());
+        this.setGoRight(!this.isGoRight());
+    }
+
     public void setGoRight(boolean goRight) {
         this.goRight = goRight;
     }
@@ -59,15 +74,6 @@ public class EsferaL extends Gun {
 
     public boolean isGoDown() {
         return goDown;
-    }
-
-    @Override
-    public void onCollision(Sprite sprite) {
-        if (sprite instanceof Gun) return;
-        
-        sprite.setLives(sprite.getLives() - 1);
-        this.setGoDown(!this.isGoDown());
-        this.setGoRight(!this.isGoRight());
     }
 
 }

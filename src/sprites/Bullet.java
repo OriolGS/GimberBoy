@@ -5,6 +5,7 @@ import model.ListModelDeJoc;
 import vista.ZonaDeJoc;
 
 public class Bullet extends Gun {
+    // Simulate settings
     private static final String IMAGE_STRING = "Bullet";
     private static final int WIDTH = 10;
     private static final int HEIGHT = 10;
@@ -12,11 +13,14 @@ public class Bullet extends Gun {
     private static final boolean IS_ENEMY = false;
     private static final boolean IS_HITTABLE = true;
     private static final int SPEED = -2;
+
+    // Exclusive variable for this Sprite
     private Sprite origin;
 
     public Bullet(int x, int y, Sprite origin) {
-        super(x, y, WIDTH, HEIGHT, LIVES, IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
+        super(x - (WIDTH / 2), y, WIDTH, HEIGHT, LIVES, IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
         this.origin = origin;
+        ListModelDeJoc.getInstancia().balas.add(this);
     }
 
     @Override
@@ -43,7 +47,7 @@ public class Bullet extends Gun {
     @Override
     public void onCollision(Sprite sprite) {
         sprite.setLives(sprite.getLives() - 1);
-        System.out.println("Sprite " + sprite.getImageString() + " lives: " + sprite.getLives());
+        System.out.println(sprite.getImageString() + " lives: " + sprite.getLives());
         this.setLives(0);
         if (sprite instanceof Misil) return;
 

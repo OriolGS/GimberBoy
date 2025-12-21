@@ -93,7 +93,7 @@ public class ListModelDeJoc extends Observable implements IModelDeJoc{
 	}
 
 	public void hemPitjatElMouse() {
-		balas.add(new Bullet(g.getX() + (g.getWidth() / 2), g.getY() - ZonaDeJoc.MARGIN, this.g));
+		g.shoot();
 	}
 
 	public void coordenadesDelMouse(int x, int y) {

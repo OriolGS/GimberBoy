@@ -18,16 +18,14 @@ public abstract class Gun extends Sprite {
         int maxX = getX() + getWidth();
         int maxY = getY() + getHeight();
 
-        LinkedList<Sprite> hittableSprites =
-        ListModelDeJoc.getInstancia().vEntes.stream()
-            .filter(Sprite::isHittable)
-            .collect(Collectors.toCollection(LinkedList::new));
+        LinkedList<Sprite> hittableSprites = ListModelDeJoc.getInstancia().vEntes.stream()
+                .filter(Sprite::isHittable)
+                .collect(Collectors.toCollection(LinkedList::new));
 
         hittableSprites.addAll(
                 ListModelDeJoc.getInstancia().balas.stream()
-                    .filter(Sprite::isHittable)
-                    .toList()
-        );
+                        .filter(Sprite::isHittable)
+                        .toList());
 
         for (Sprite sprite : hittableSprites) {
 
@@ -44,7 +42,6 @@ public abstract class Gun extends Sprite {
             }
         }
     }
-
 
     public abstract void onCollision(Sprite sprite);
 
