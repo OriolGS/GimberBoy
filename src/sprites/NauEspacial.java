@@ -14,8 +14,8 @@ public class NauEspacial extends Sprite {
     private static final int LIVES = 3;
     private static final boolean IS_ENEMY = true;
     private static final boolean IS_HITTABLE = true;
-    private static final int DISAPPEAR_FACTOR = 500;
-    private static final int APPEAR_FACTOR = 400;
+    private static final int DISAPPEAR_FACTOR = 400;
+    private static final int APPEAR_FACTOR = 100;
 
     // Exclusive variables for this Sprite
     private boolean displayed;
