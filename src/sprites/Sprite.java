@@ -68,7 +68,6 @@ public abstract class Sprite {
 		this.lives = lives;
 
 		if (this.lives == 0) {
-			// TODO: Show an ID and name to have a better notification
 			killSprite();
 		}
 	}

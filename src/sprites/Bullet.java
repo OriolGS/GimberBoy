@@ -45,6 +45,8 @@ public class Bullet extends Gun {
         sprite.setLives(sprite.getLives() - 1);
         System.out.println("Sprite " + sprite.getImageString() + " lives: " + sprite.getLives());
         this.setLives(0);
+        if (sprite instanceof Misil) return;
+
         if (!this.isEnemy && sprite.getLives() == 0) {
             this.origin.setMarcador(this.origin.getMarcador() + 1);
         }
