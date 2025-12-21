@@ -45,7 +45,6 @@ public class GimberBoy extends Sprite {
         }
     }
 
-    // TODO: Make marcador a singleton so it can be updated from the sprites that are killed
     @Override
     public void setMarcador(int marcador) {
         super.setMarcador(marcador);

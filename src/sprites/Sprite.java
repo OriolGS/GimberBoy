@@ -10,7 +10,7 @@ public abstract class Sprite {
 	protected List<Sprite> leafs = null;
 	protected boolean isEnemy;
 	protected boolean isHittable;
-	private int marcador = 0; // TODO: remove it. The scoardboard is going to be a singleton
+	private int marcador = 0;
 
 	public Sprite(int x, int y, int width, int height, int lives, String imageString, boolean isEnemy,
 			boolean isHittable) {
