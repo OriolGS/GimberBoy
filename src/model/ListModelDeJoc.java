@@ -52,7 +52,7 @@ public class ListModelDeJoc extends Observable implements IModelDeJoc{
 		ListIterator<Sprite> iterBala = ((LinkedList<Sprite>) balas.clone()).listIterator(0);
 		while (iter.hasNext()) {
 			s = iter.next();
-			s.animar(); // Show sprites in game
+			s.animar();
 		}
 
 		while (iterBala.hasNext()) {
@@ -107,10 +107,10 @@ public class ListModelDeJoc extends Observable implements IModelDeJoc{
 
 		if (x >= ZonaDeJoc.ANCHO - g.getWidth() - ZonaDeJoc.MARGIN) {
 			x = ZonaDeJoc.ANCHO - g.getWidth() - ZonaDeJoc.MARGIN;
-		} else if (x <= 10) {
-			x = 10;
+		} else if (x <= ZonaDeJoc.MARGIN) {
+			x = ZonaDeJoc.MARGIN;
 		}
-		g.setX(x);
+		g.setX(x - (g.getWidth() / 2));
 		g.setY(y);
 
 	}
@@ -143,6 +143,8 @@ public class ListModelDeJoc extends Observable implements IModelDeJoc{
 	@Override
 	public void gameOver() {
 		this.playing = false;
+		vEntes.clear();
+		balas.clear();
 	}
 
 	public boolean getPlaying() {
