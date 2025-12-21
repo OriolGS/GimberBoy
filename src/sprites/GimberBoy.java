@@ -34,7 +34,7 @@ public class GimberBoy extends Sprite {
     public void setLives(int lives) {
         super.setLives(lives);
         if (super.getLives() == 0) {
-            System.exit(0);
+            ListModelDeJoc.getInstancia().gameOver();
         }
     }
 

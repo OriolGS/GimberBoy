@@ -22,6 +22,7 @@ public class ZonaDeJoc extends JPanel implements Observer {
 	public static final int ANCHO = 1000;
 	public static final int ALTO = 750;
 	public static final int MARGIN = 20;
+	public boolean restart = true;
 
 	private final BufferedImage doblebufer; // final en properes iteracions
 	private ControladorDeJoc controlador;// controlador del game
@@ -46,7 +47,12 @@ public class ZonaDeJoc extends JPanel implements Observer {
 	}
 
 	public void jugar() {
-		controlador.jugar();
+		while (restart) {
+			controlador.jugar();
+			setRestart(controlador.gameOverView());
+		}
+		System.out.println("Game ended");
+		finalizar();
 	}
 
 	@Override
@@ -60,7 +66,6 @@ public class ZonaDeJoc extends JPanel implements Observer {
 
 	public void finalizar() {
 		// Deixa de mirar patró observer
-
 		setVisible(false);
 	}
 
@@ -76,7 +81,8 @@ public class ZonaDeJoc extends JPanel implements Observer {
 				{ "BolaL", "BolaL.gif" },
 				{ "BolaR", "BolaR.gif" },
 				{ "Bullet", "Bullet.gif" },
-				{ "Misil", "Misil.png" }
+				{ "Misil", "Misil.png" },
+				{ "GameOver", "GameOver.png" }
 		};
 
 		try {
@@ -117,5 +123,9 @@ public class ZonaDeJoc extends JPanel implements Observer {
 
 	public void addMouseMotionListener(ControladorDeJoc controlador) {
 		super.addMouseMotionListener(controlador);
+	}
+
+	public void setRestart(boolean exit) {
+		this.restart = exit;
 	}
 }

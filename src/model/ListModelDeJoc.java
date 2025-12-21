@@ -8,14 +8,13 @@ import sprites.*;
 import vista.ZonaDeJoc;
 
 @SuppressWarnings("deprecation")
-public class ListModelDeJoc extends Observable {
+public class ListModelDeJoc extends Observable implements IModelDeJoc{
 
-	// Patró Adapter, ROL Adaptad
-
-	public Fons f = new Fons();
-	private GimberBoy g = new GimberBoy();
-	public Marcador m = new Marcador();
-	public NauEspacial n = new NauEspacial();
+	public Fons f = null;
+	private GimberBoy g = null;
+	public Marcador m = null;
+	public NauEspacial n = null;
+	private boolean playing = true; 
 
 	public LinkedList<Sprite> vEntes = new LinkedList<Sprite>();
 	public LinkedList<Sprite> balas = new LinkedList<Sprite>();
@@ -31,7 +30,14 @@ public class ListModelDeJoc extends Observable {
 	}
 
 	public void iniciarJoc() {
-		// Creates initial entities of the game
+		vEntes.clear();
+		balas.clear();
+		f = new Fons("FONS");
+		g = new GimberBoy();
+		m = new Marcador();
+		n = new NauEspacial();
+		playing = true;
+
 		vEntes.add(0, g);
 		vEntes.add(1, m);
 		vEntes.add(2, n);
@@ -87,7 +93,7 @@ public class ListModelDeJoc extends Observable {
 	}
 
 	public void hemPitjatElMouse() {
-		balas.add(new Bullet(g.getX(), g.getY() - ZonaDeJoc.MARGIN, this.g));
+		balas.add(new Bullet(g.getX() + (g.getWidth() / 2), g.getY() - ZonaDeJoc.MARGIN, this.g));
 	}
 
 	public void coordenadesDelMouse(int x, int y) {
@@ -115,6 +121,32 @@ public class ListModelDeJoc extends Observable {
 
 	public void añadirEsferaR() {
 		vEntes.add(new EsferaR());
+	}
+
+	@Override
+	public void afegirElement(Sprite b) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void eliminarElement(Sprite b) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'eliminarElement'");
+	}
+
+	@Override
+	public Sprite getSprite(int n) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'getSprite'");
+	}
+
+	@Override
+	public void gameOver() {
+		this.playing = false;
+	}
+
+	public boolean getPlaying() {
+		return this.playing;
 	}
 
 }
