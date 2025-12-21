@@ -20,7 +20,7 @@ public class Bullet extends Gun {
     public Bullet(int x, int y, Sprite origin) {
         super(x - (WIDTH / 2), y, WIDTH, HEIGHT, LIVES, IMAGE_STRING, IS_ENEMY, IS_HITTABLE);
         this.origin = origin;
-        ListModelDeJoc.getInstancia().balas.add(this);
+        ListModelDeJoc.getInstancia().afegirElement(this, true);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Bullet extends Gun {
 
     @Override
     public void killSprite() {
-        ListModelDeJoc.getInstancia().balas.remove(this);
+        ListModelDeJoc.getInstancia().eliminarElement(this, true);
     }
 
     @Override

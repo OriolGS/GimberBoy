@@ -14,7 +14,7 @@ public class Misil extends Gun {
 
     public Misil(int x, int y, Sprite origin) {
         super(x - (WIDTH / 2), y, WIDTH, HEIGHT, 1, "Misil", IS_ENEMY, IS_HITTABLE);
-        ListModelDeJoc.getInstancia().balas.add(this);
+        ListModelDeJoc.getInstancia().afegirElement(this, true);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class Misil extends Gun {
 
     @Override
     public void killSprite() {
-        ListModelDeJoc.getInstancia().balas.remove(this);
+        ListModelDeJoc.getInstancia().eliminarElement(this, true);
     }
 
     @Override

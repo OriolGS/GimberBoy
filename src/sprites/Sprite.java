@@ -33,7 +33,7 @@ public abstract class Sprite {
 	}
 
 	public void killSprite() {
-		ListModelDeJoc.getInstancia().vEntes.remove(this);
+		ListModelDeJoc.getInstancia().eliminarElement(this, false);
 		System.out.println(imageString + " destroyed");
 	}
 

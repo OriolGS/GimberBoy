@@ -45,7 +45,6 @@ public class ControladorDeJoc implements MouseListener, MouseMotionListener {
 
 			// update: Comportaments sincrons
 			// generem per a cada sprite una nova posició
-			// TODO: animarJoc, pintar and notificar a los observadores
 			ListModelDeJoc.getInstancia().animarJoc();
 
 			// Render: Cridem al motor de gràfics

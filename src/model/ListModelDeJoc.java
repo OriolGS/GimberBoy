@@ -124,20 +124,30 @@ public class ListModelDeJoc extends Observable implements IModelDeJoc{
 	}
 
 	@Override
-	public void afegirElement(Sprite b) {
-		// TODO Auto-generated method stub
+	public void afegirElement(Sprite b, boolean isBullet) {
+		if (isBullet) {
+			balas.add(b);
+		} else {
+			vEntes.add(b);
+		}
 	}
 
 	@Override
-	public void eliminarElement(Sprite b) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'eliminarElement'");
+	public void eliminarElement(Sprite b, boolean isBullet) {
+		if (isBullet) {
+			balas.remove(b);
+		} else {
+			vEntes.remove(b);
+		}
 	}
 
 	@Override
-	public Sprite getSprite(int n) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getSprite'");
+	public Sprite getSprite(int n, boolean isBullet) {
+		if (isBullet) {
+			return balas.get(n);
+		} else {
+			return vEntes.get(n);
+		}
 	}
 
 	@Override
