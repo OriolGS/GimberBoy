@@ -13,7 +13,6 @@ public class ControladorDeJoc implements MouseListener, MouseMotionListener {
 	private long usedTime;
 	// vista és el JPanel en el que visualitzem el joc
 	private final ZonaDeJoc vista;
-	private int i = (int) (Math.random() * 100 + 1);
 	private int j = 1;
 	private boolean response = false;
 	private boolean restart = false; 
@@ -37,7 +36,6 @@ public class ControladorDeJoc implements MouseListener, MouseMotionListener {
 			// utilitzant els mouseListener i mouseMotionListener
 
 			j++;
-			i++;
 			if (j >= 300) {
 				ListModelDeJoc.getInstancia().añadirEsferaL();
 				ListModelDeJoc.getInstancia().añadirEsferaR();
