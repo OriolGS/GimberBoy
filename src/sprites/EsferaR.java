@@ -37,13 +37,13 @@ public class EsferaR extends Gun {
         setX(x);
         setY(y);
 
-        if (getX() >= (ZonaDeJoc.ANCHO - getWidth() - ZonaDeJoc.MARGIN)) {
+        if (getX() >= (ZonaDeJoc.WIDTH_WITHOUT_MARGIN - getWidth())) {
             setGoRight(false);
         } else if (getX() <= (getWidth() + ZonaDeJoc.MARGIN)) {
             setGoRight(true);
         }
 
-        if (getY() >= (ZonaDeJoc.ALTO - getHeight() - ZonaDeJoc.MARGIN)) {
+        if (getY() >= (ZonaDeJoc.HEIGHT_WITHOUT_MARGIN - getHeight())) {
             setGoDown(false);
         } else if (getY() <= getHeight() + ZonaDeJoc.MARGIN) {
             setGoDown(true);

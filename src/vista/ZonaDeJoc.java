@@ -22,6 +22,8 @@ public class ZonaDeJoc extends JPanel implements Observer {
 	public static final int ANCHO = 1000;
 	public static final int ALTO = 750;
 	public static final int MARGIN = 20;
+	public static final int WIDTH_WITHOUT_MARGIN = ANCHO - MARGIN;
+	public static final int HEIGHT_WITHOUT_MARGIN = ALTO - MARGIN;
 	public boolean restart = true;
 
 	private final BufferedImage doblebufer; // final en properes iteracions

@@ -97,16 +97,16 @@ public class ListModelDeJoc extends Observable implements IModelDeJoc{
 	}
 
 	public void coordenadesDelMouse(int x, int y) {
-		if (y >= ZonaDeJoc.ALTO - g.getHeight() - ZonaDeJoc.MARGIN) {
+		if (y >= ZonaDeJoc.HEIGHT_WITHOUT_MARGIN - g.getHeight()) {
 			// Mouse below screen
-			y = ZonaDeJoc.ALTO - g.getHeight() - ZonaDeJoc.MARGIN;
+			y = ZonaDeJoc.HEIGHT_WITHOUT_MARGIN - g.getHeight();
 		} else if (y <= ZonaDeJoc.ALTO / 3 * 2) {
 			// Mouse above expected zone
 			y = ZonaDeJoc.ALTO / 3 * 2;
 		}
 
-		if (x >= ZonaDeJoc.ANCHO - g.getWidth() - ZonaDeJoc.MARGIN) {
-			x = ZonaDeJoc.ANCHO - g.getWidth() - ZonaDeJoc.MARGIN;
+		if (x >= ZonaDeJoc.WIDTH_WITHOUT_MARGIN - g.getWidth()) {
+			x = ZonaDeJoc.WIDTH_WITHOUT_MARGIN - g.getWidth();
 		} else if (x <= ZonaDeJoc.MARGIN) {
 			x = ZonaDeJoc.MARGIN;
 		}
